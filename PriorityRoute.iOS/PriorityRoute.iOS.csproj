@@ -113,6 +113,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\FullSizeRender.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\FullSizeRender.imageset\FullSizeRender.jpeg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -132,5 +134,8 @@
       <Project>{B328D6B5-7B44-43D3-8E52-250BB551D2D7}</Project>
       <Name>PriorityRoute</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\FullSizeRender.imageset\" />
   </ItemGroup>
 </Project>

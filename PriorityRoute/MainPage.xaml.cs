@@ -17,5 +17,15 @@ namespace PriorityRoute
         {
             InitializeComponent();
         }
+
+        private async void ManageDriversClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ManageUsers());
+        }
+
+        private async void FindMyRouteClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new RoutingScreen());
+        }
     }
 }

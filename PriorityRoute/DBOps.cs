@@ -17,7 +17,7 @@ public class DBOps
      * String Password
      * String Birthday (in format "MM/DD/YYYY")
      */
-    static void addUser(
+    static void AddUser(
         int companyID,
         Boolean admin,
         String firstName,
@@ -58,7 +58,7 @@ public class DBOps
      *
      * Verification is done with Username and Password
      */
-    static Boolean verifyUser(
+    static Boolean VerifyUser(
         String username,
         String password)
     {

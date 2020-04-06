@@ -3,7 +3,10 @@
     <ContentPage.Content>
         <StackLayout>
             <Button Text="Home" Clicked="RoutingScreenClicked"/>
-            <Image Source="https://maps.googleapis.com/maps/api/staticmap?center=41.796636,-72.777577&amp;zoom=16&amp;size=600x600&amp;key=AIzaSyCM35yVDMoWOYdyPkBc1r4iXieivhP4PqA"/>
+            <Image Source="https://maps.googleapis.com/maps/api/staticmap?center=41.796636,-72.777577&amp;zoom=16&amp;size=600x600&amp;key=AIzaSyCM35yVDMoWOYdyPkBc1r4iXieivhP4PqA" Aspect="Fill" /> 
+
+            
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

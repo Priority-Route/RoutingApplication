@@ -17,7 +17,7 @@ public class DBOps
      * String Password
      * String Birthday (in format "MM/DD/YYYY")
      */
-    static void AddUser(
+    public void AddUser(
         int companyID,
         Boolean admin,
         String firstName,
@@ -58,7 +58,7 @@ public class DBOps
      *
      * Verification is done with Username and Password
      */
-    static Boolean VerifyUser(
+    public Boolean VerifyUser(
         String username,
         String password)
     {
@@ -76,9 +76,9 @@ public class DBOps
 
         while (rdr.Read())
         {
-            if (rdr.GetString(0).equals(username))
+            if (rdr.GetString(0).Equals(username))
             {
-                if (rdr.GetString(1).equals(password))
+                if (rdr.GetString(1).Equals(password))
                 {
                     found = true;
                 }

@@ -93,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PriorityRoute\PriorityRoute.csproj">
-      <Project>{B328D6B5-7B44-43D3-8E52-250BB551D2D7}</Project>
+      <Project>{2770BF9C-7D12-4221-93FB-FB9BC6707BD5}</Project>
       <Name>PriorityRoute</Name>
     </ProjectReference>
   </ItemGroup>

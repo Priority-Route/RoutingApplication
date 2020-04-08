@@ -6,14 +6,6 @@ public class DBOps
     // Setting path to database
     readonly String DBPath = "Data Source=PriorityRoute/PRDB01";
 
-    // Simplified AddUser method: only requires username and password
-    public void AddUserSimple(
-        String username,
-        String password)
-    {
-        AddUser(0, false, "null", "null", username, password, "01/01/70");
-    }
-
     /* Add user to database.
      * 
      * User must be input with the following variables:
@@ -61,6 +53,97 @@ public class DBOps
         cmd.ExecuteNonQuery();
     }
 
+    // Simplified AddUser method: only requires username and password
+    public void AddUserSimple(
+        String username,
+        String password)
+    {
+        AddUser(0, false, "null", "null", username, password, "01/01/70");
+    }
+
+    /* Add company to database
+     *
+     * Company must be input with the following information:
+     * String Name
+     * String License
+     * String Expiration
+     */
+    public void AddCompany(
+        String name,
+        String license,
+        String expiration)
+    {
+        string cs = DBPath;
+
+        using var con = new SQLiteConnection(cs);
+        con.Open();
+
+        using var cmd = new SQLiteCommand(con);
+
+        cmd.CommandText = "INSERT INTO Company(Name, License, Expiration) VALUES(@name, @license, @expiration)";
+
+        cmd.Parameters.AddWithValue("@name", name);
+        cmd.Parameters.AddWithValue("@license", license);
+        cmd.Parameters.AddWithValue("@expiration", expiration);
+        cmd.Prepare();
+
+        cmd.ExecuteNonQuery();
+    }
+
+    /* Add point to database with additional information
+     *
+     * Point must be input with the following information:
+     * int Company ID
+     * int Status
+     * String Latitude
+     * String Longitude
+     * String Address
+     * int Zip Code
+     * String Additional Information
+     */
+    public void AddPointAddInfo(
+        int CompanyID,
+        int Status,
+        String Latitude,
+        String Longitude,
+        String Address,
+        int ZipCode,
+        String AdditionalInformation)
+    {
+        string cs = DBPath;
+
+        using var con = new SQLiteConnection(cs);
+        con.Open();
+
+        using var cmd = new SQLiteCommand(con);
+
+        cmd.CommandText = "INSERT INTO Points(CompanyID, Status, Latitude, Longitude, Address, ZipCode, AddInfo) VALUES(@cID, @stt, @lat, @lon, @add, @zcd, @ain)";
+
+        cmd.Parameters.AddWithValue("@cID", CompanyID);
+        cmd.Parameters.AddWithValue("@stt", Status);
+        cmd.Parameters.AddWithValue("@lat", Latitude);
+        cmd.Parameters.AddWithValue("@lon", Longitude);
+        cmd.Parameters.AddWithValue("@add", Address);
+        cmd.Parameters.AddWithValue("@zcd", ZipCode);
+        cmd.Parameters.AddWithValue("@ain", AdditionalInformation);
+        cmd.Prepare();
+
+        cmd.ExecuteNonQuery();
+    }
+
+    // Add point to database without additiona information
+    // Simplified version of AddPointAddInfo method
+    public void AddPoint(
+        int CompanyID,
+        int Status,
+        String Latitude,
+        String Longitude,
+        String Address,
+        int ZipCode)
+    {
+        AddPointAddInfo(CompanyID,Status,Latitude,Longitude,Address,ZipCode,"");
+    }
+
     /* Verifies user login credentials
      * Returns true if user is found, false otherwise
      *
@@ -96,35 +179,6 @@ public class DBOps
         }
 
         return found;
-    }
-
-    /* Add company to database
-     *
-     * Company must be input with the following information:
-     * String Name
-     * String License
-     * String Expiration
-     */
-    public void AddCompany(
-        String name,
-        String license,
-        String expiration)
-    {
-        string cs = DBPath;
-
-        using var con = new SQLiteConnection(cs);
-        con.Open();
-
-        using var cmd = new SQLiteCommand(con);
-
-        cmd.CommandText = "INSERT INTO Company(Name, License, Expiration) VALUES(@name, @license, @expiration)";
-
-        cmd.Parameters.AddWithValue("@name", name);
-        cmd.Parameters.AddWithValue("@license", license);
-        cmd.Parameters.AddWithValue("@expiration", expiration);
-        cmd.Prepare();
-
-        cmd.ExecuteNonQuery();
     }
 
     /* Prints to console a list of all companies with IDs

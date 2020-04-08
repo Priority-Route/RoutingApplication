@@ -181,6 +181,39 @@ public class DBOps
         return found;
     }
 
+<<<<<<< HEAD
+=======
+
+    /* Add company to database
+     *
+     * Company must be input with the following information:
+     * String Name
+     * String License
+     * String Expiration
+     */
+    public void AddCompany(
+        String name,
+        String license,
+        String expiration)
+    {
+        string cs = DBPath;
+
+        using var con = new SQLiteConnection(cs);
+        con.Open();
+
+        using var cmd = new SQLiteCommand(con);
+
+        cmd.CommandText = "INSERT INTO Company(Name, License, Expiration) VALUES(@name, @license, @expiration)";
+
+        cmd.Parameters.AddWithValue("@name", name);
+        cmd.Parameters.AddWithValue("@license", license);
+        cmd.Parameters.AddWithValue("@expiration", expiration);
+        cmd.Prepare();
+
+        cmd.ExecuteNonQuery();
+    }
+
+>>>>>>> 078f548... last push before merge.
     /* Prints to console a list of all companies with IDs
      */
     public void getCompanies()
@@ -237,4 +270,5 @@ public class DBOps
             }
         }
     }
+    
 }

@@ -15,10 +15,14 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.530" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
+<<<<<<< HEAD
     <PackageReference Include="System.Data.Common" Version="4.3.0" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.112" />
+=======
+    <PackageReference Include="Xamarin.Forms.Maps" Version="4.5.0.530" />
+>>>>>>> 16f831a74f15328cb1d1fbf989bdc9c9767aacb4
   </ItemGroup>
 </Project>

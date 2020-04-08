@@ -1,9 +1,20 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PriorityRoute.RoutingScreen">
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PriorityRoute.RoutingScreen" BackgroundColor="Black">
     <ContentPage.Content>
         <StackLayout>
+<<<<<<< HEAD
             <Button Text="Home" Clicked="RoutingScreenClicked"/>
             <Image Source="https://maps.googleapis.com/maps/api/staticmap?center=41.796636,-72.777577&amp;zoom=16&amp;size=600x600&amp;key=AIzaSyCM35yVDMoWOYdyPkBc1r4iXieivhP4PqA" Aspect="Fill" /> 
+=======
+            <!--<Button Text="Home" Clicked="RoutingScreenClicked"/>-
+
+            <Image Source="https://maps.googleapis.com/maps/api/staticmap?center=41.1606522,-73.2576147.&amp;zoom=16&amp;size=600x600&amp;key=AIzaSyCM35yVDMoWOYdyPkBc1r4iXieivhP4PqA"
+                   Aspect="AspectFit"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="FillAndExpand"/>-->
+
+            <Button Text="Optimize My Route!" BackgroundColor="#5299E7"/>
+>>>>>>> 16f831a74f15328cb1d1fbf989bdc9c9767aacb4
 
             
 

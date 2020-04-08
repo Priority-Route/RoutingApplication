@@ -55,6 +55,12 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
     <PackageReference Include="Xamarin.Essentials" Version="1.3.1" />
+<<<<<<< HEAD
+=======
+    <PackageReference Include="Xamarin.Forms.Maps">
+      <Version>4.5.0.530</Version>
+    </PackageReference>
+>>>>>>> 16f831a74f15328cb1d1fbf989bdc9c9767aacb4
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

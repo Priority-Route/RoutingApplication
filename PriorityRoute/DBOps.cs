@@ -83,8 +83,9 @@ public class DBOps
         con.Open();
 
         String stm = "SELECT * FROM User WHERE Username = @unm AND Password = @pwd";
-        stm.AddWithValue("@unm", username);
-        stm.AddWithValue("@pwd", password);
+        stm.Parameters.AddWithValue("@unm", username);
+        stm.Parameters.AddWithValue("@pwd", password);
+        stm.Prepare();
 
         using var cmd = new SQLiteCommand(stm, con);
         using SQLiteDataReader rdr = cmd.ExecuteReader();
@@ -100,9 +101,9 @@ public class DBOps
         {
             int empID = (int)rdr.GetString(0);
             User usr = new User(
-                (int)rdr.GetString(0),
-                (int)rdr.GetString(1),
-                (int)rdr.GetString(2),
+                rdr.GetInt32(0),
+                rdr.GetInt32(1),
+                rdr.GetInt32(2),
                 rdr.GetString(3),
                 rdr.GetString(4),
                 rdr.GetString(5),
@@ -135,14 +136,101 @@ public class DBOps
 
         using var cmd = new SQLiteCommand(con);
 
-        cmd.CommandText = "INSERT INTO Company(Name, License, Expiration) VALUES(@name, @license, @expiration)";
+        cmd.CommandText = "INSERT INTO Company(Name, License, Expiration) VALUES(@name, @lic, @exp)";
 
         cmd.Parameters.AddWithValue("@name", name);
-        cmd.Parameters.AddWithValue("@license", license);
-        cmd.Parameters.AddWithValue("@expiration", expiration);
+        cmd.Parameters.AddWithValue("@lic", license);
+        cmd.Parameters.AddWithValue("@exp", expiration);
         cmd.Prepare();
 
         cmd.ExecuteNonQuery();
+    }
+
+    // Returns Company object given ID
+    public Company getCompany(int ID)
+    {
+        string cs = DBPath;
+
+        using var con = new SQLiteConnection(cs);
+        con.Open();
+
+        String stm = "SELECT * FROM Company WHERE ID = @cID";
+        stm.Parameters.AddWithValue("@cID", ID.ToString());
+        stm.Prepare();
+
+        using var cmd = new SQLiteCommand(stm, con);
+        using SQLiteDataReader rdr = cmd.ExecuteReader();
+        // 0 - ID
+        // 1 - Name
+        // 2 - License
+        // 3 - Expiration
+        // 4 - Valid
+
+        try
+        {
+            Company comp = new Company(
+                rdr.GetInt32(0),
+                rdr.GetString(1),
+                rdr.GetString(2),
+                rdr.GetString(3)
+            );
+            return comp;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    /* Returns all users in a given company
+     * Requires a company object
+     * Returns a list of employees (users)
+     */
+    public List<User> companyGetUsers(Company comp)
+    {
+        string cs = DBPath;
+
+        using var con = new SQLiteConnection(cs);
+        con.Open();
+
+        String stm = "SELECT * FROM User WHERE CompanyID = @cID";
+        stm.Parameters.AddWithValue("@cID", comp.getCompanyID());
+        stm.Prepare();
+
+        using var cmd = new SQLiteCommand(stm, con);
+        using SQLiteDataReader rdr = cmd.ExecuteReader();
+        // 0 - ID
+        // 1 - Company ID
+        // 2 - Administrator Status
+        // 3 - First Name
+        // 4 - Last Name
+        // 5 - Username
+        // 6 - Password
+        // 7 - Birthday
+
+        try
+        {
+            List<User> employees = new List<User>();
+            while (rdr.Read())
+            {
+                User usr = new User(
+                    rdr.GetInt32(0),
+                    rdr.GetInt32(1),
+                    rdr.GetInt32(2),
+                    rdr.GetString(3),
+                    rdr.GetString(4),
+                    rdr.GetString(5),
+                    rdr.GetString(6),
+                    rdr.GetString(7)
+                );
+                employees.add(usr);
+            }
+            return employees;
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     /* Add point to database with additional information
@@ -197,69 +285,5 @@ public class DBOps
         int ZipCode)
     {
         AddPointAddInfo(CompanyID,Status,Latitude,Longitude,Address,ZipCode,"");
-    }
-
-    /* Verifies user login credentials
-     * Returns true if user is found, false otherwise
-     *
-     * Verification is done with Username and Password
-     */
-
-    /* Prints to console a list of all companies with IDs
-     */
-    public void getCompanies()
-    {
-        string cs = DBPath;
-
-        using var con = new SQLiteConnection(cs);
-        con.Open();
-
-        String stm = "SELECT * FROM Company";
-
-        using var cmd = new SQLiteCommand(stm, con);
-        using SQLiteDataReader rdr = cmd.ExecuteReader();
-        // 0 - ID
-        // 1 - Name
-        // 2 - License
-        // 3 - Expiration
-        // 4 - Valid
-
-        while (rdr.Read())
-        {
-            Console.WriteLine(rdr.GetString(0) + " " + rdr.GetString(1));
-        }
-    }
-
-    /* Returns all users in a given company
-     * Requires a company ID
-     */
-    public void companyGetUsers(int CompanyID)
-    {
-        string cs = DBPath;
-
-        using var con = new SQLiteConnection(cs);
-        con.Open();
-
-        String stm = "SELECT * FROM User";
-
-        using var cmd = new SQLiteCommand(stm, con);
-        using SQLiteDataReader rdr = cmd.ExecuteReader();
-        // 0 - ID
-        // 1 - Company ID
-        // 2 - Administrator Status
-        // 3 - First Name
-        // 4 - Last Name
-        // 5 - Username
-        // 6 - Password
-        // 7 - Birthday
-
-        while (rdr.Read())
-        {
-            if (rdr.GetString(1).Equals(CompanyID.ToString()))
-            {
-                Console.WriteLine(rdr.GetString(0) + " " + rdr.GetString(3) + " " + rdr.GetString(4));
-            }
-        }
-    }
-    
+    }    
 }

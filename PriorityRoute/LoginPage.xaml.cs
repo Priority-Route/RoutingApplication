@@ -11,9 +11,24 @@ namespace PriorityRoute
         {
             InitializeComponent();
         }
-        private async void LoginClicked(object sender, EventArgs e)
+        private void LoginClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MainPage());
+            var Usernameview = FindByName("Entr_Username") as Entry;
+            var Passwordview = FindByName("Entr_Password") as Entry;
+
+            DBOps dbops = new DBOps();
+
+            User user = dbops.GetUser(Usernameview.Text, Passwordview.Text);
+            if (user != null)
+            {
+                Navigation.PushAsync(new MainPage(user));
+            }
+            else
+            {
+                DisplayAlert("Invalid User.", "This user does not exist", "Cancel");
+            }
+
+            
         }
     }
 }

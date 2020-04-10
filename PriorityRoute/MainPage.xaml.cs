@@ -13,7 +13,7 @@ namespace PriorityRoute
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        public MainPage(User user)
         {
             InitializeComponent();
         }

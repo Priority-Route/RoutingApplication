@@ -42,6 +42,12 @@ public class User
         this.birthday = birthday;
     }
 
+    /*public User(User usr)
+    {
+        this.employeeID = usr.getEmployeeID;
+
+    }*/
+
     public int getEmployeeID()
     {
         return this.employeeID;

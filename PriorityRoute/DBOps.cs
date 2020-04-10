@@ -54,11 +54,66 @@ public class DBOps
     }
 
     // Simplified AddUser method: only requires username and password
-    public void AddUserSimple(
+    public void AddUser(
         String username,
         String password)
     {
         AddUser(0, false, "null", "null", username, password, "01/01/70");
+    }
+
+    // Verifies User with username and password credentials
+    // Returns boolean if user is found
+    public Boolean VerifyUser(
+        String username,
+        String password)
+    {
+        if (GetUser(username, password) != null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    // Finds user in database using username and password
+    public User GetUser(String username, String password)
+    {
+        string cs = DBPath;
+
+        using var con = new SQLiteConnection(cs);
+        con.Open();
+
+        String stm = "SELECT * FROM User WHERE Username = @unm AND Password = @pwd";
+        stm.AddWithValue("@unm", username);
+        stm.AddWithValue("@pwd", password);
+
+        using var cmd = new SQLiteCommand(stm, con);
+        using SQLiteDataReader rdr = cmd.ExecuteReader();
+        // 0 - Employee ID
+        // 1 - Company ID
+        // 2 - Administrator
+        // 3 - First Name
+        // 4 - Last Name
+        // 5 - Username
+        // 6 - Password
+        // 7 - Birthday
+        try
+        {
+            int empID = (int)rdr.GetString(0);
+            User usr = new User(
+                (int)rdr.GetString(0),
+                (int)rdr.GetString(1),
+                (int)rdr.GetString(2),
+                rdr.GetString(3),
+                rdr.GetString(4),
+                rdr.GetString(5),
+                rdr.GetString(6),
+                rdr.GetString(7));
+            return usr;
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     /* Add company to database
@@ -149,38 +204,6 @@ public class DBOps
      *
      * Verification is done with Username and Password
      */
-    public Boolean VerifyUser(
-        String username,
-        String password)
-    {
-        string cs = DBPath;
-
-        using var con = new SQLiteConnection(cs);
-        con.Open();
-
-        String stm = "SELECT Username, Password FROM User";
-
-        using var cmd = new SQLiteCommand(stm, con);
-        using SQLiteDataReader rdr = cmd.ExecuteReader();
-        // 0 - username
-        // 1 - password
-
-        Boolean found = false;
-
-        while (rdr.Read())
-        {
-            if (rdr.GetString(0).Equals(username))
-            {
-                if (rdr.GetString(1).Equals(password))
-                {
-                    found = true;
-                }
-            }
-        }
-
-        return found;
-    }
-
 
     /* Prints to console a list of all companies with IDs
      */

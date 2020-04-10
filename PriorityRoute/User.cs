@@ -83,7 +83,7 @@ public class User
         return this.password;
     }
 
-    public int getBirthday()
+    public String getBirthday()
     {
         return this.birthday;
     }

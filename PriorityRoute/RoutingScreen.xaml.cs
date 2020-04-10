@@ -14,11 +14,6 @@ namespace PriorityRoute
             FindMyLocation();
         }
 
-        private async void RoutingScreenClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new MainPage());
-        }
-
         private async void OptimizeMyRouteClicked(object sender, EventArgs e)
         {
             var location = await Geolocation.GetLastKnownLocationAsync();

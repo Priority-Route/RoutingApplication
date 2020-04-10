@@ -83,11 +83,13 @@ public class DBOps
         con.Open();
 
         String stm = "SELECT * FROM User WHERE Username = @unm AND Password = @pwd";
-        stm.Parameters.AddWithValue("@unm", username);
-        stm.Parameters.AddWithValue("@pwd", password);
-        stm.Prepare();
-
+       
         using var cmd = new SQLiteCommand(stm, con);
+
+        cmd.Parameters.AddWithValue("@unm", username);
+        cmd.Parameters.AddWithValue("@pwd", password);
+        cmd.Prepare();
+
         using SQLiteDataReader rdr = cmd.ExecuteReader();
         // 0 - Employee ID
         // 1 - Company ID
@@ -99,7 +101,7 @@ public class DBOps
         // 7 - Birthday
         try
         {
-            int empID = (int)rdr.GetString(0);
+            int empID = rdr.GetInt32(0);
             User usr = new User(
                 rdr.GetInt32(0),
                 rdr.GetInt32(1),
@@ -194,10 +196,12 @@ public class DBOps
         con.Open();
 
         String stm = "SELECT * FROM User WHERE CompanyID = @cID";
-        stm.Parameters.AddWithValue("@cID", comp.getCompanyID());
-        stm.Prepare();
 
         using var cmd = new SQLiteCommand(stm, con);
+
+        cmd.Parameters.AddWithValue("@cID", comp.getCompanyID());
+        cmd.Prepare();
+
         using SQLiteDataReader rdr = cmd.ExecuteReader();
         // 0 - ID
         // 1 - Company ID

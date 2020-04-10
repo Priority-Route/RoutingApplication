@@ -102,7 +102,6 @@ public class DBOps
         // 7 - Birthday
         try
         {
-            int empID = rdr.GetInt32(0);
             User usr = new User(
                 rdr.GetInt32(0),
                 rdr.GetInt32(1),

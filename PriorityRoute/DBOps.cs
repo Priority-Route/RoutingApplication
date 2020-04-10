@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
 
 public class DBOps
@@ -157,10 +158,12 @@ public class DBOps
         con.Open();
 
         String stm = "SELECT * FROM Company WHERE ID = @cID";
-        stm.Parameters.AddWithValue("@cID", ID.ToString());
-        stm.Prepare();
-
+        
         using var cmd = new SQLiteCommand(stm, con);
+
+        cmd.Parameters.AddWithValue("@cID", ID.ToString());
+        cmd.Prepare();
+
         using SQLiteDataReader rdr = cmd.ExecuteReader();
         // 0 - ID
         // 1 - Name

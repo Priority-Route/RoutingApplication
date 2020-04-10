@@ -230,7 +230,7 @@ public class DBOps
                     rdr.GetString(6),
                     rdr.GetString(7)
                 );
-                employees.add(usr);
+                employees.Add(usr);
             }
             return employees;
         }

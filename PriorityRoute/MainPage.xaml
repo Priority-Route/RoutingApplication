@@ -12,6 +12,7 @@
                 BorderWidth="2"
                 BackgroundColor="#5299E7"
                 TextColor="Black"
+             
                 />
 
         <Button Text="Manage Drivers"
@@ -23,6 +24,7 @@
                 BorderWidth="2"
                 BackgroundColor="#5299E7"
                 TextColor="Black"
+                
                 />
 
         <Label Text="PriorityRoute®"

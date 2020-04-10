@@ -11,9 +11,13 @@ namespace PriorityRoute
         {
             InitializeComponent();
         }
-        private async void ManageUsersClicked(object sender, EventArgs e)
+        private async void AddUserClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new MainPage());
+        }
+        private async void HomeButtonClicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
         }
     }
 }

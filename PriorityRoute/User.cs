@@ -1,10 +1,12 @@
 using System;
-using System.Data.SQLite;
+using SQLite;
 
+
+[Table("Users")]
 public class User
 {
-
-    private int employeeID;
+    [PrimaryKey, AutoIncrement]
+    public int employeeID { get; set; }
     private int companyID;
     private Boolean administrator;
     private String firstName;

@@ -1,11 +1,18 @@
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using SQLite;
 
 public class DBOps
 {
     // Setting path to database
     readonly String DBPath = "Data Source=PriorityRoute/PRDB01";
+
+    public DBOps()
+    {
+        using var con = new SQLiteConnection(DBPath);
+        con.CreateTable<User>();
+    }
+
 
     /* Add user to database.
      * 
@@ -19,19 +26,14 @@ public class DBOps
      * String Birthday (in format "MM/DD/YYYY")
      */
     public void AddUser(
-        int companyID,
-        Boolean admin,
-        String firstName,
-        String lastName,
-        String username,
-        String password,
-        String birthday)
+        User userToInsert)
     {
         string cs = DBPath;
 
         using var con = new SQLiteConnection(cs);
-        con.Open();
+        //con.Open();
 
+        con.Insert(userToInsert);
         using var cmd = new SQLiteCommand(con);
 
         int adminVal = 0;

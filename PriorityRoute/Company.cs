@@ -2,51 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 
+[Table("Company")]
 public class Company
 {
-    private int companyID;
-    private String name;
-
-    private String license;
-    private String expiration;
-    private Boolean valid = true;
-
-    private List<User> employees;
-
-    public Company(
-        int compID,
-        String nam,
-        String lic,
-        String exp)
-    {
-        this.companyID = compID;
-        this.name = nam;
-        this.license = lic;
-        this.expiration = exp;
-    }
-
-    public int getCompanyID()
-    {
-        return this.companyID;
-    }
-
-    public String getCompanyName()
-    {
-        return this.name;
-    }
-
-    public String getLicense()
-    {
-        return this.license;
-    }
-
-    public String getExpiration()
-    {
-        return this.expiration;
-    }
-
-    public List<User> getEmployees()
-    {
-        return this.employees;
-    }
+    [PrimaryKey, AutoIncrement]
+    public int ID {get; set;}
+    public String Name {get; set;}
+    public String License {get; set;}
+    public String Expiration {get; set;}
+    public int Valid {get; set;}
 }

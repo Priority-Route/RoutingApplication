@@ -18,7 +18,7 @@ namespace PriorityRoute
 
             DBOps dbops = new DBOps();
 
-            User user = dbops.GetUser(Usernameview.Text, Passwordview.Text);
+            User user = dbops.VerifyUserAsync(Usernameview.Text, Passwordview.Text);
             if (user != null)
             {
                 Navigation.PushAsync(new MainPage(user));

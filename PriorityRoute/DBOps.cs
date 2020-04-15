@@ -13,6 +13,7 @@ public class DBOps
         connection = new SQLiteAsyncConnection(DBPath);
         connection.CreateTableAsync<User>.Wait();
         connection.CreateTableAsync<Company>.Wait();
+        connection.CreateTableAsync<Point>.Wait();
     }
 
     public async Task<int> AddUserAsync(User user)
@@ -20,9 +21,14 @@ public class DBOps
         return await connection.InsertAsync(user);
     }
 
-    public async Task<int> AddCompanyAsync(User comp)
+    public async Task<int> AddCompanyAsync(Company comp)
     {
         return await connection.InsertAsync(comp);
+    }
+
+    public async Task<int> AddPointAsync(Point point)
+    {
+        return await connection.InsertAsync(point);
     }
 
     public async Task<bool> DeleteUserAsync(int ID)
@@ -37,6 +43,13 @@ public class DBOps
         var company_to_delete = connection.Table<Company>();
         Where(i => i.ID == ID).FirstOrDefaultAsync();
         var number_deleted = await connection.DelteAsync(company_to_delete.Result);
+    }
+
+    public async Task<bool> DeletePointAsync(int ID)
+    {
+        var point_to_delete = connection.Table<Point>();
+        Where(i => i.Designation == ID).FirstOrDefaultAsync();
+        var number_deleted = await connection.DelteAsync(point_to_delete.Result);
     }
 
     public async Task<User> GetUserAsync(int ID)
@@ -54,9 +67,14 @@ public class DBOps
         return null;
     }
 
-    public async Task<User> GetCompanyAsync(int ID)
+    public async Task<Company> GetCompanyAsync(int ID)
     {
         return connection.Table<Company>().OrderBy(x => x.ID == ID).ToListAsync();
+    }
+
+    public async Task<Point> GetPointAsync(int ID)
+    {
+        return connection.Table<Point>().OrderBy(x => x.Designation == ID).ToListAsync();
     }
 
     public async Task<bool> UpdateUserAsync(User user)
@@ -71,5 +89,12 @@ public class DBOps
         var companiesUpdated = await connection.UpdateAsync(comp);
 
         return companiesUpdated == 1;
+    }
+
+    public async Task<bool> UpdatePointAsync(Point point)
+    {
+        var pointsUpdated = await connection.UpdateAsync(point);
+
+        return pointsUpdated == 1;
     }
 }

@@ -65,14 +65,15 @@ public class DBOps
         return connection.Table<User>().Where(i => i.ID == id).FirstOrDefaultAsync();
     }
 
-    public Task<User> VerifyUsernameAsync(String username)
+    public Boolean VerifyUsernameAsync(String username, String password)
     {
-        Task<User> user_to_verify = connection.Table<User>().Where(x => x.Username == username).FirstOrDefaultAsync();
-        if (user_to_verify != null)
+        Task<User> dbOutput = connection.Table<User>().Where(x => x.Username == username).FirstOrDefaultAsync();
+        User user_to_verify = dbOutput.Result();
+        if (user_to_verify.Password.Equals(password))
         {
-            return user_to_verify;
+            return true;
         }
-        return null;
+        return false;
     }
 
     public Task<Company> GetCompanyAsync(int id)

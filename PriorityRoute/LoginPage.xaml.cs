@@ -20,14 +20,10 @@ namespace PriorityRoute
             DBOps dbops = new DBOps();
 
             //User user = dbops.VerifyUsernameAsync(Usernameview.Text);
-            var user = dbops.VerifyUsernameAsync(Usernameview.ToString()).Result;
-            if (user != null)
+            Boolean login = dbops.VerifyUsernameAsync(Usernameview.ToString(), Passwordview.ToString());
+            if (login)
             {
-                if (user.Password.Equals(Passwordview.ToString()))
-                {
-                    Navigation.PushAsync(new MainPage(user));
-                }
-               
+                Navigation.PushAsync(new MainPage(user));               
             }
             else
             {

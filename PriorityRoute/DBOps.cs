@@ -37,18 +37,24 @@ public class DBOps
     {
         var user_to_delete = connection.Table<User>().Where(i => i.ID == ID).FirstOrDefaultAsync();
         var number_deleted = await connection.DeleteAsync(user_to_delete.Result);
+
+        return number_deleted == 1;
     }
 
     public async Task<bool> DeleteCompanyAsync(int ID)
     {
         var company_to_delete = connection.Table<Company>().Where(i => i.ID == ID).FirstOrDefaultAsync();
         var number_deleted = await connection.DeleteAsync(company_to_delete.Result);
+
+        return number_deleted == 1;
     }
 
     public async Task<bool> DeletePointAsync(int ID)
     {
         var point_to_delete = connection.Table<Point>().Where(i => i.Designation == ID).FirstOrDefaultAsync();
         var number_deleted = await connection.DeleteAsync(point_to_delete.Result);
+
+        return number_deleted == 1;
     }
 
     public async Task<User> GetUserAsync(int ID)

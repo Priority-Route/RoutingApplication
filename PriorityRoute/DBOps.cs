@@ -17,6 +17,7 @@ public class DBOps
         connection.CreateTableAsync<Company>.Wait();
         connection.CreateTableAsync<Point>.Wait();
     }
+    
 
     public async Task<int> AddUserAsync(User user)
     {
@@ -32,6 +33,7 @@ public class DBOps
     {
         return await connection.InsertAsync(point);
     }
+
 
     public async Task<bool> DeleteUserAsync(int ID)
     {
@@ -57,12 +59,13 @@ public class DBOps
         return number_deleted == 1;
     }
 
-    public async Task<User> GetUserAsync(int ID)
+
+    public Task<User> GetUserAsync(int id)
     {
-        return connection.Table<User>().OrderBy(x => x.ID == ID).ToListAsync();
+        return connection.Table<User>().Where(i => i.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<User> VerifyUserAsync(String username, String password)
+    public Task<User> VerifyUserAsync(String username, String password)
     {
         User user_to_verify = connection.Table<User>().OrderBy(x => x.Username == username).ToListAsync();
         if (user_to_verify.Password.Equals(password))
@@ -72,15 +75,16 @@ public class DBOps
         return null;
     }
 
-    public async Task<Company> GetCompanyAsync(int ID)
+    public Task<Company> GetCompanyAsync(int id)
     {
-        return connection.Table<Company>().OrderBy(x => x.ID == ID).ToListAsync();
+        return connection.Table<Company>().Where(i => i.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<Point> GetPointAsync(int ID)
+    public Task<Point> GetPointAsync(int id)
     {
-        return connection.Table<Point>().OrderBy(x => x.Designation == ID).ToListAsync();
+        return connection.Table<Point>().Where(i => i.Designation == id).FirstOrDefaultAsync();
     }
+
 
     public async Task<bool> UpdateUserAsync(User user)
     {

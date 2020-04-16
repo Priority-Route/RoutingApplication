@@ -131,21 +131,10 @@ public class DBOps
 
     public async Task<IEnumerable<User>> GetEmployeesAsync(bool forceRefresh = false, String compName)
     {
-        IEnumerable<User> employees = await connection.Table<User>().OrderBy(i => i.ID).ToListAsync();
-        List<User> employees_to_return = new List<User>();
-
         Company comp = await this.GetCompanyAsync(compName);
         int compID = comp.ID;
 
-        foreach (User employee in employees)
-        {
-            if (employee.CompanyID == compID)
-            {
-                employees_to_return.Add(employee);
-            }
-        }
-
-        return employees_to_return;
+        return this.GetEmployeesAsync(compID);
     }
 
     public Task<Point> GetPointAsync(int id)

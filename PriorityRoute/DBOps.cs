@@ -108,6 +108,46 @@ public class DBOps
         return connection.Table<Company>().Where(i => i.ID == id).FirstOrDefaultAsync();
     }
 
+    public Task<Company> GetCompanyAsync(String name)
+    {
+        return connection.Table<Company>().Where(i => i.Name == name).FirstOrDefaultAsync();
+    }
+
+    public async Task<IEnumerable<User>> GetEmployeesAsync(bool forceRefresh = false, int compID)
+    {
+        IEnumerable<User> employees = await connection.Table<User>().OrderBy(i => i.ID).ToListAsync();
+        List<User> employees_to_return = new List<User>();
+
+        foreach (User employee in employees)
+        {
+            if (employee.CompanyID == compID)
+            {
+                employees_to_return.Add(employee);
+            }
+        }
+
+        return employees_to_return;
+    }
+
+    public async Task<IEnumerable<User>> GetEmployeesAsync(bool forceRefresh = false, String compName)
+    {
+        IEnumerable<User> employees = await connection.Table<User>().OrderBy(i => i.ID).ToListAsync();
+        List<User> employees_to_return = new List<User>();
+
+        Company comp = await this.GetCompanyAsync(compName);
+        int compID = comp.ID;
+
+        foreach (User employee in employees)
+        {
+            if (employee.CompanyID == compID)
+            {
+                employees_to_return.Add(employee);
+            }
+        }
+
+        return employees_to_return;
+    }
+
     public Task<Point> GetPointAsync(int id)
     {
         return connection.Table<Point>().Where(i => i.Designation == id).FirstOrDefaultAsync();

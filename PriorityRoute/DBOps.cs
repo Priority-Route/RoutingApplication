@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using SQLite;
+using PriorityRoute.Models;
 
 public class DBOps
 {
@@ -33,23 +35,20 @@ public class DBOps
 
     public async Task<bool> DeleteUserAsync(int ID)
     {
-        var user_to_delete = connection.Table<User>();
-        Where(i => i.ID == ID).FirstOrDefaultAsync();
-        var number_deleted = await connection.DelteAsync(user_to_delete.Result);
+        var user_to_delete = connection.Table<User>().Where(i => i.ID == ID).FirstOrDefaultAsync();
+        var number_deleted = await connection.DeleteAsync(user_to_delete.Result);
     }
 
     public async Task<bool> DeleteCompanyAsync(int ID)
     {
-        var company_to_delete = connection.Table<Company>();
-        Where(i => i.ID == ID).FirstOrDefaultAsync();
-        var number_deleted = await connection.DelteAsync(company_to_delete.Result);
+        var company_to_delete = connection.Table<Company>().Where(i => i.ID == ID).FirstOrDefaultAsync();
+        var number_deleted = await connection.DeleteAsync(company_to_delete.Result);
     }
 
     public async Task<bool> DeletePointAsync(int ID)
     {
-        var point_to_delete = connection.Table<Point>();
-        Where(i => i.Designation == ID).FirstOrDefaultAsync();
-        var number_deleted = await connection.DelteAsync(point_to_delete.Result);
+        var point_to_delete = connection.Table<Point>().Where(i => i.Designation == ID).FirstOrDefaultAsync();
+        var number_deleted = await connection.DeleteAsync(point_to_delete.Result);
     }
 
     public async Task<User> GetUserAsync(int ID)

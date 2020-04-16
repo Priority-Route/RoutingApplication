@@ -17,8 +17,28 @@ public class DBOps
         connection.CreateTableAsync<User>().Wait();
         connection.CreateTableAsync<Company>().Wait();
         connection.CreateTableAsync<Point>().Wait();
-        User user = new User { ID = 1, CompanyID = 1, Administrator = 1, FirstName = "Admin", LastName = "Administrator", Username = "admin", Password = "PRadmin01", Birthday = "09/01/19" };
+
+        User user = new User {
+            ID = 1,
+            CompanyID = 1,
+            Administrator = 1,
+            FirstName = "Admin",
+            LastName = "Administrator",
+            Username = "admin",
+            Password = "PRadmin01",
+            Birthday = "09/01/19"
+        };
+
+        Company comp = new Company {
+            ID = 1,
+            Name = "Priority Route",
+            License = "N/A",
+            Expiration = "N/A",
+            Valid = 1
+        };
+
         this.AddUserAsync(user).Wait();
+        this.AddCompanyAsync(comp).Wait();
     }
     
 
@@ -68,10 +88,14 @@ public class DBOps
         return connection.Table<User>().Where(i => i.ID == id).FirstOrDefaultAsync();
     }
 
+    public Task<User> GetUserAsync(String username)
+    {
+        return connection.Table<User>().Where(x => x.Username == username).FirstOrDefaultAsync();
+    }
+
     public async Task<bool> VerifyUsernameAsync(String username, String password)
     {
         User user_to_verify = await connection.Table<User>().Where(x => x.Username == username).FirstOrDefaultAsync();
-        //User user_to_verify = dbOutput.Result();
         if (user_to_verify.Password.Equals(password))
         {
             return true;

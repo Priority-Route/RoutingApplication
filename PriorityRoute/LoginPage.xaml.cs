@@ -11,20 +11,21 @@ namespace PriorityRoute
         {
             InitializeComponent();
         }
+        
         private async void LoginClicked(object sender, EventArgs e)
         {
             var Usernameview = FindByName("Entr_Username") as Entry;
-            //String username = (string)Usernameview;
+            String username = Usernameview.ToString();
             var Passwordview = FindByName("Entr_Password") as Entry;
+            String password = Passwordview.ToString();
 
             DBOps dbops = new DBOps();
 
-            //User user = dbops.VerifyUsernameAsync(Usernameview.Text);
-            bool login = await dbops.VerifyUsernameAsync(Usernameview.ToString(), Passwordview.ToString());
-            User user = await dbops.GetUserAsync(1);
+            bool login = await dbops.VerifyUsernameAsync(username, password);
             if (login)
             {
-                await Navigation.PushAsync(new MainPage(user));               
+                User user = dbops.GetUserAsync(username);
+                await Navigation.PushAsync(new MainPage(user));
             }
             else
             {

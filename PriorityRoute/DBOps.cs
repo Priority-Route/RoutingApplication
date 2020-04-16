@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using SQLite;
 
 
+
 public class DBOps
 {
     // Setting path to database
-    readonly String DBPath = "PriorityRoute/PRDB01.db";
+    readonly String DBPath = "PRDB01.db";
     readonly SQLiteAsyncConnection connection;
 
     public DBOps()
@@ -16,6 +17,8 @@ public class DBOps
         connection.CreateTableAsync<User>().Wait();
         connection.CreateTableAsync<Company>().Wait();
         connection.CreateTableAsync<Point>().Wait();
+        User user = new User { ID = 1, CompanyID = 1, Administrator = 1, FirstName = "Admin", LastName = "Administrator", Username = "admin", Password = "PRadmin01", Birthday = "09/01/19" };
+        this.AddUserAsync(user).Wait();
     }
     
 
@@ -65,10 +68,10 @@ public class DBOps
         return connection.Table<User>().Where(i => i.ID == id).FirstOrDefaultAsync();
     }
 
-    public Boolean VerifyUsernameAsync(String username, String password)
+    public async Task<bool> VerifyUsernameAsync(String username, String password)
     {
-        Task<User> dbOutput = connection.Table<User>().Where(x => x.Username == username).FirstOrDefaultAsync();
-        User user_to_verify = dbOutput.Result();
+        User user_to_verify = await connection.Table<User>().Where(x => x.Username == username).FirstOrDefaultAsync();
+        //User user_to_verify = dbOutput.Result();
         if (user_to_verify.Password.Equals(password))
         {
             return true;

@@ -14,14 +14,20 @@ namespace PriorityRoute
         private void LoginClicked(object sender, EventArgs e)
         {
             var Usernameview = FindByName("Entr_Username") as Entry;
+            //String username = (string)Usernameview;
             var Passwordview = FindByName("Entr_Password") as Entry;
 
             DBOps dbops = new DBOps();
 
-            User user = dbops.VerifyUserAsync(Usernameview.Text, Passwordview.Text);
+            //User user = dbops.VerifyUsernameAsync(Usernameview.Text);
+            var user = dbops.VerifyUsernameAsync(Usernameview.ToString()).Result;
             if (user != null)
             {
-                Navigation.PushAsync(new MainPage(user));
+                if (user.Password.Equals(Passwordview.ToString()))
+                {
+                    Navigation.PushAsync(new MainPage(user));
+                }
+               
             }
             else
             {

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using SQLite;
-using PriorityRoute.Models;
+
 
 public class DBOps
 {
@@ -13,9 +13,9 @@ public class DBOps
     public DBOps()
     {
         connection = new SQLiteAsyncConnection(DBPath);
-        connection.CreateTableAsync<User>.Wait();
-        connection.CreateTableAsync<Company>.Wait();
-        connection.CreateTableAsync<Point>.Wait();
+        connection.CreateTableAsync<User>().Wait();
+        connection.CreateTableAsync<Company>().Wait();
+        connection.CreateTableAsync<Point>().Wait();
     }
     
 
@@ -62,13 +62,13 @@ public class DBOps
 
     public Task<User> GetUserAsync(int id)
     {
-        return connection.Table<User>().Where(i => i.Id == id).FirstOrDefaultAsync();
+        return connection.Table<User>().Where(i => i.ID == id).FirstOrDefaultAsync();
     }
 
-    public Task<User> VerifyUserAsync(String username, String password)
+    public Task<User> VerifyUsernameAsync(String username)
     {
-        User user_to_verify = connection.Table<User>().OrderBy(x => x.Username == username).ToListAsync();
-        if (user_to_verify.Password.Equals(password))
+        Task<User> user_to_verify = connection.Table<User>().Where(x => x.Username == username).FirstOrDefaultAsync();
+        if (user_to_verify != null)
         {
             return user_to_verify;
         }
@@ -77,7 +77,7 @@ public class DBOps
 
     public Task<Company> GetCompanyAsync(int id)
     {
-        return connection.Table<Company>().Where(i => i.Id == id).FirstOrDefaultAsync();
+        return connection.Table<Company>().Where(i => i.ID == id).FirstOrDefaultAsync();
     }
 
     public Task<Point> GetPointAsync(int id)

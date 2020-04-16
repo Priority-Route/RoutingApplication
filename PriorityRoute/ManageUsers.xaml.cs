@@ -18,15 +18,15 @@ namespace PriorityRoute
 
             // User user = new User(Usernameview.Text, Passwordview.Text)
 
-            DBOps dbops = new DBOps();
-            if (dbops.VerifyUser(Usernameview.Text, Passwordview.Text))
-            {
-                DisplayAlert("Duplicate User.", "The user you tried to create is already in the system.", "Cancel" );
-            }
-            else
-            {
-                dbops.AddUser(Usernameview.Text, Passwordview.Text);
-            }
+            //DBOps dbops = new DBOps();
+            //if (dbops.VerifyUser(Usernameview.Text, Passwordview.Text))
+            //{
+            //    DisplayAlert("Duplicate User.", "The user you tried to create is already in the system.", "Cancel" );
+            //}
+            //else
+            //{
+            //    dbops.AddUser(Usernameview.Text, Passwordview.Text);
+            //}
             
         }
         private async void HomeButtonClicked(object sender, EventArgs e)

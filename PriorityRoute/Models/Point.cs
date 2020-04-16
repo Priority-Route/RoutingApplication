@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Data.SQLite;
+using SQLite;
 
 [Table("Point")]
 public class Point

@@ -155,6 +155,7 @@ public class DBOps
     // get employees of certain company
     // requires company ID
     // returns enumerable object of employees
+
     // public async Task<IEnumerable<User>> GetEmployeesAsync(bool forceRefresh = false, int compID)
     // {
     //     IEnumerable<User> employees = await connection.Table<User>().OrderBy(i => i.ID).ToListAsync();
@@ -171,9 +172,27 @@ public class DBOps
     //     return employees_to_return;
     // }
 
+    //public async Task<IEnumerable<User>> GetEmployeesAsync(bool forceRefresh = false, int compID)
+    //{
+    //    IEnumerable<User> employees = await connection.Table<User>().OrderBy(i => i.ID).ToListAsync();
+    //    IEnumerable<User> employees_to_return = new IEnumerable<User>();
+
+    //    foreach (User employee in employees)
+    //    {
+    //        if (employee.CompanyID == compID)
+    //        {
+    //            employees_to_return.AddUserAsync(employee);
+    //        }
+    //    }
+
+    //    return employees_to_return;
+    //}
+
+
     // get employees of certain company
     // requires company name
     // returns enumerable object of employees
+
     // public async Task<IEnumerable<User>> GetEmployeesAsync(bool forceRefresh = false, String compName)
     // {
     //     Company comp = await this.GetCompanyAsync(compName);
@@ -181,6 +200,15 @@ public class DBOps
 
     //     return this.GetEmployeesAsync(compID);
     // }
+
+    //public async Task<IEnumerable<User>> GetEmployeesAsync(bool forceRefresh = false, String compName)
+    //{
+    //    Company comp = await this.GetCompanyAsync(compName);
+    //    int compID = comp.ID;
+
+    //    return this.GetEmployeesAsync(compID);
+    //}
+
 
     // get point from database
     // requires point ID
@@ -193,6 +221,7 @@ public class DBOps
     // get points in company network
     // requires company ID
     // returns enumerable object of points
+
     // public async Task<IEnumerable<Point>> GetNetworkAsync(bool forceRefresh = false, int compID)
     // {
     //     IEnumerable<Point> points = await connection.Table<Point>().OrderBy(i => i.Designation).ToListAsync();
@@ -209,9 +238,27 @@ public class DBOps
     //     return network;
     // }
 
+    //public async Task<IEnumerable<Point>> GetNetworkAsync(bool forceRefresh = false, int compID)
+    //{
+    //    IEnumerable<Point> points = await connection.Table<Point>().OrderBy(i => i.Designation).ToListAsync();
+    //    IEnumerable<Point> network = new IEnumerable<Point>();
+
+    //    foreach (Point point in points)
+    //    {
+    //        if (point.CompanyID == compID)
+    //        {
+    //            network.AddPointAsync(point);
+    //        }
+    //    }
+
+    //    return network;
+    //}
+
+
     // get points of company network
     // requires company name
     // returns enumerable object of points
+
     // public async Task<IEnumerable<Point>> GetNetworkAsync(bool forceRefresh = false, String compName)
     // {
     //     Company comp = await this.GetCompanyAsync(compName);
@@ -219,6 +266,15 @@ public class DBOps
 
     //     return this.GetNetworkAsync(compID);
     // }
+
+    //public async Task<IEnumerable<Point>> GetNetworkAsync(bool forceRefresh = false, String compName)
+    //{
+    //    Company comp = await this.GetCompanyAsync(compName);
+    //    int compID = comp.ID;
+
+    //    return this.GetNetworkAsync(compID);
+    //}
+
 
 
     // UPDATE INFORMATION METHODS

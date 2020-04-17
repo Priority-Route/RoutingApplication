@@ -31,4 +31,15 @@
     <Compile Remove="Views\LoginPage.xaml.cs" />
     <Compile Remove="Views\RoutingScreen.xaml.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\ManageUsers.xaml.cs">
+      <DependentUpon>ManageUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\RoutingScreen.xaml.cs">
+      <DependentUpon>RoutingScreen.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

@@ -28,7 +28,6 @@
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Remove="Views\LoginPage.xaml.cs" />
     <Compile Remove="Views\RoutingScreen.xaml.cs" />
   </ItemGroup>
   <ItemGroup>

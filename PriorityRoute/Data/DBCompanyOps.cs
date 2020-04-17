@@ -13,7 +13,10 @@ namespace PriorityRoute.Data
         {
             conn = DependencyService.Get<ISQLite>().GetConnection();
             conn.CreateTable<Company>();
-            conn.CreateTable<User>();
+            
+            Company admin = new Company();
+            admin.Name = "Priority Route";
+            this.AddCompany(admin);
         }
 
         public Boolean AddCompany(Company comp)

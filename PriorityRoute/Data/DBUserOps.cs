@@ -14,6 +14,11 @@ namespace PriorityRoute.Data
         {
             conn = DependencyService.Get<ISQLite>().GetConnection();
             conn.CreateTable<User>();
+
+            User admin = new User();
+            admin.Username = "admin";
+            admin.Password = "PRadmin01";
+            this.AddUser(admin);
         }
 
         public Boolean AddUser(User user)

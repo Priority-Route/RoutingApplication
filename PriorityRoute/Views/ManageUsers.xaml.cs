@@ -46,7 +46,7 @@ namespace PriorityRoute.Views
                     if (retrunvalue == "Sucessfully Added")
                     {
                         await DisplayAlert("User Add", retrunvalue, "OK");
-                        await Navigation.PushAsync(new LoginPage());
+                        await Navigation.PushAsync(new LogInPage());
                     }
                     else
                     {
@@ -63,7 +63,7 @@ namespace PriorityRoute.Views
                     Debug.WriteLine(ex);
                 }
 
-                Navigation.PushAsync(new LoginPage());
+                Navigation.PushAsync(new LogInPage());
 
             }
 

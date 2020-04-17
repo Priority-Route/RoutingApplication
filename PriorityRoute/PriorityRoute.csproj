@@ -40,5 +40,8 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\RoutingScreen.xaml.cs">
       <DependentUpon>RoutingScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\LogInPage.xaml.cs">
+      <DependentUpon>LogInPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

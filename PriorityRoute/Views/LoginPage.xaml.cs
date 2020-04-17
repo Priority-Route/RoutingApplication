@@ -1,48 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using PriorityRoute.Data;
 using PriorityRoute.Models;
-
+using Xamarin.Forms.Xaml;
 using Xamarin.Forms;
 
-namespace PriorityRoute
+namespace PriorityRoute.views
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-       
+        UserDatabaseController userDB = new UserDatabaseController();
         public LoginPage()
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
+            userNameEntry.ReturnCommand = new Command(() => passwordEntry.Focus());
         }
 
         private async void LoginClicked(object sender, EventArgs e)
         {
-            var Usernameview = FindByName("Entr_Username") as Entry;
-            String username = Usernameview.ToString();
-            var Passwordview = FindByName("Entr_Password") as Entry;
-            String password = Passwordview.ToString();
-
-            // DBOps dbops = new DBOps();
-            DBUserOps ops = new DBUserOps();
-
-            // bool login = await dbops.VerifyUsernameAsync(username, password);
-            bool login = ops.VerifyUser(username, password);
-            if (login)
+            if (userNameEntry.Text != null && passwordEntry.Text != null)
             {
+                var validData = userDB.LoginValidate(userNameEntry.Text, passwordEntry.Text);
+                if (validData)
+                {
 
-                // User user = await dbops.GetUserAsync(username);
-                User user = ops.GetUser(username);
+                    await Navigation.PushAsync(new MainPage());
+                    Navigation.RemovePage(this);
 
-               
+                }
+                else
+                {
 
-                await Navigation.PushAsync(new MainPage(user));
-            }
-            else
-            {
-                await DisplayAlert("Invalid User.", "This user does not exist", "Cancel");
+                    await DisplayAlert("Login Failed", "Username or Password Incorrect", "OK");
+                }
+
             }
 
-            
         }
     }
 }
+

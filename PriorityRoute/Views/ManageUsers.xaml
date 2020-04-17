@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PriorityRoute.ManageUsers" BackgroundColor="Black">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PriorityRoute.Views.ManageUsers" BackgroundColor="Black">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Manage Users" TextColor="#4096FD" HorizontalOptions="CenterAndExpand" FontSize="30" Padding="0,40,0,80"/>
 
             <Label x:Name="Lbl_Username" Text="Please Enter a Username" TextColor="White" FontSize="18" />
-            <Entry x:Name="Entr_Username" Placeholder="Username" PlaceholderColor="White" TextColor="White" />
+            <Entry x:Name="userNameEntry" Placeholder="Username" PlaceholderColor="White" TextColor="White" />
             <Label x:Name="Lbl_Password" Text="Please Enter a Password" TextColor="White" FontSize="18" />
-            <Entry x:Name="Entr_Password" Placeholder="Password" PlaceholderColor="White" TextColor="White" />
+            <Entry x:Name="passwordEntry" Placeholder="Password" PlaceholderColor="White" TextColor="White" />
 
             <Grid VerticalOptions="EndAndExpand">
                 <!--<Grid.RowDefinitions>

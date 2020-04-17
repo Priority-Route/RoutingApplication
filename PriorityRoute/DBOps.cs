@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 using SQLite;
 
 
@@ -17,7 +16,7 @@ public class DBOps
     // creating default users
     public DBOps()
     {
-        connection = DependencyService.Get<ISQLite>().GetConnection();
+        connection = new SQLiteAsyncConnection(DBPath);
         connection.CreateTableAsync<User>().Wait();
         connection.CreateTableAsync<Company>().Wait();
         connection.CreateTableAsync<Point>().Wait();

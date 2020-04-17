@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using PriorityRoute.Data;
 
 using Xamarin.Forms;
 
@@ -19,12 +20,15 @@ namespace PriorityRoute
             var Passwordview = FindByName("Entr_Password") as Entry;
             String password = Passwordview.ToString();
 
-            DBOps dbops = new DBOps();
+            // DBOps dbops = new DBOps();
+            DBUserOps ops = new DBUserOps();
 
-            bool login = await dbops.VerifyUsernameAsync(username, password);
+            // bool login = await dbops.VerifyUsernameAsync(username, password);
+            bool login = ops.VerifyUser(username, password);
             if (login)
             {
-                User user = await dbops.GetUserAsync(username);
+                // User user = await dbops.GetUserAsync(username);
+                User user = ops.GetUser(username);
                 await Navigation.PushAsync(new MainPage(user));
             }
             else

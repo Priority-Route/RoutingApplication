@@ -1,10 +1,10 @@
 ﻿using System;
+using SQLite;
+
 namespace PriorityRoute.Data
 {
-    public class ISQLite
+    public interface ISQLite
     {
-        public ISQLite()
-        {
-        }
+        SQLiteConnection GetConnection();
     }
 }

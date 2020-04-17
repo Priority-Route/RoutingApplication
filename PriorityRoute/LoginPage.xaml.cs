@@ -24,7 +24,7 @@ namespace PriorityRoute
             bool login = await dbops.VerifyUsernameAsync(username, password);
             if (login)
             {
-                User user = dbops.GetUserAsync(username);
+                User user = await dbops.GetUserAsync(username);
                 await Navigation.PushAsync(new MainPage(user));
             }
             else

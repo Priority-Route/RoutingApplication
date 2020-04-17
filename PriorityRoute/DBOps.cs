@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using SQLite;
 
 
@@ -16,7 +17,7 @@ public class DBOps
     // creating default users
     public DBOps()
     {
-        connection = new SQLiteAsyncConnection(DBPath);
+        connection = DependencyService.Get<ISQLite>().GetConnection();
         connection.CreateTableAsync<User>().Wait();
         connection.CreateTableAsync<Company>().Wait();
         connection.CreateTableAsync<Point>().Wait();
@@ -155,32 +156,32 @@ public class DBOps
     // get employees of certain company
     // requires company ID
     // returns enumerable object of employees
-    public async Task<IEnumerable<User>> GetEmployeesAsync(bool forceRefresh = false, int compID)
-    {
-        IEnumerable<User> employees = await connection.Table<User>().OrderBy(i => i.ID).ToListAsync();
-        IEnumerable<User> employees_to_return = new IEnumerable<User>();
+    // public async Task<IEnumerable<User>> GetEmployeesAsync(bool forceRefresh = false, int compID)
+    // {
+    //     IEnumerable<User> employees = await connection.Table<User>().OrderBy(i => i.ID).ToListAsync();
+    //     IEnumerable<User> employees_to_return = new IEnumerable<User>();
 
-        foreach (User employee in employees)
-        {
-            if (employee.CompanyID == compID)
-            {
-                employees_to_return.AddUserAsync(employee);
-            }
-        }
+    //     foreach (User employee in employees)
+    //     {
+    //         if (employee.CompanyID == compID)
+    //         {
+    //             employees_to_return.AddUserAsync(employee);
+    //         }
+    //     }
 
-        return employees_to_return;
-    }
+    //     return employees_to_return;
+    // }
 
     // get employees of certain company
     // requires company name
     // returns enumerable object of employees
-    public async Task<IEnumerable<User>> GetEmployeesAsync(bool forceRefresh = false, String compName)
-    {
-        Company comp = await this.GetCompanyAsync(compName);
-        int compID = comp.ID;
+    // public async Task<IEnumerable<User>> GetEmployeesAsync(bool forceRefresh = false, String compName)
+    // {
+    //     Company comp = await this.GetCompanyAsync(compName);
+    //     int compID = comp.ID;
 
-        return this.GetEmployeesAsync(compID);
-    }
+    //     return this.GetEmployeesAsync(compID);
+    // }
 
     // get point from database
     // requires point ID
@@ -193,32 +194,32 @@ public class DBOps
     // get points in company network
     // requires company ID
     // returns enumerable object of points
-    public async Task<IEnumerable<Point>> GetNetworkAsync(bool forceRefresh = false, int compID)
-    {
-        IEnumerable<Point> points = await connection.Table<Point>().OrderBy(i => i.Designation).ToListAsync();
-        IEnumerable<Point> network = new IEnumerable<Point>();
+    // public async Task<IEnumerable<Point>> GetNetworkAsync(bool forceRefresh = false, int compID)
+    // {
+    //     IEnumerable<Point> points = await connection.Table<Point>().OrderBy(i => i.Designation).ToListAsync();
+    //     IEnumerable<Point> network = new IEnumerable<Point>();
 
-        foreach (Point point in points)
-        {
-            if (point.CompanyID == compID)
-            {
-                network.AddPointAsync(point);
-            }
-        }
+    //     foreach (Point point in points)
+    //     {
+    //         if (point.CompanyID == compID)
+    //         {
+    //             network.AddPointAsync(point);
+    //         }
+    //     }
 
-        return network;
-    }
+    //     return network;
+    // }
 
     // get points of company network
     // requires company name
     // returns enumerable object of points
-    public async Task<IEnumerable<Point>> GetNetworkAsync(bool forceRefresh = false, String compName)
-    {
-        Company comp = await this.GetCompanyAsync(compName);
-        int compID = comp.ID;
+    // public async Task<IEnumerable<Point>> GetNetworkAsync(bool forceRefresh = false, String compName)
+    // {
+    //     Company comp = await this.GetCompanyAsync(compName);
+    //     int compID = comp.ID;
 
-        return this.GetNetworkAsync(compID);
-    }
+    //     return this.GetNetworkAsync(compID);
+    // }
 
 
     // UPDATE INFORMATION METHODS

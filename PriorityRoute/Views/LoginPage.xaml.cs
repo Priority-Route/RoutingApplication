@@ -1,11 +1,10 @@
 ﻿using System;
-//using System.Collections.Generic;
 using PriorityRoute.Data;
-using PriorityRoute.Models;
+//using PriorityRoute.Models;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms;
 
-namespace PriorityRoute.views
+namespace PriorityRoute.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
@@ -18,7 +17,7 @@ namespace PriorityRoute.views
             userNameEntry.ReturnCommand = new Command(() => passwordEntry.Focus());
         }
 
-        private async void LoginClicked(object sender, EventArgs e)
+        public async void LoginClicked(object sender, EventArgs e)
         {
             if (userNameEntry.Text != null && passwordEntry.Text != null)
             {

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using PriorityRoute.Data;
-//using PriorityRoute.Models;
-using Xamarin.Forms.Xaml;
+using System.Diagnostics;
+using System.Linq;
+using PriorityRoute.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace PriorityRoute.Views
 {
@@ -21,6 +24,7 @@ namespace PriorityRoute.Views
         {
             if (userNameEntry.Text != null && passwordEntry.Text != null)
             {
+
                 var validData = userDB.LoginValidate(userNameEntry.Text, passwordEntry.Text);
                 if (validData)
                 {

@@ -30,7 +30,7 @@ namespace PriorityRoute.Views
                 {
 
                     await Navigation.PushAsync(new MainPage());
-                    Navigation.RemovePage(this);
+                    //Navigation.RemovePage(this);
 
                 }
                 else

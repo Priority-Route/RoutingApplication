@@ -70,7 +70,7 @@ namespace PriorityRoute.Views
         }
         private async void HomeButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PopAsync();
+            await Navigation.PushAsync(new MainPage());
         }
     }
 }

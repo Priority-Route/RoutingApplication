@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using SQLite;
 using Xamarin.Forms;
 using System.Linq;
@@ -46,6 +47,11 @@ namespace PriorityRoute.Data
         public User GetUser(String username)
         {
             return conn.Table<User>().Where(x => x.Username == username).FirstOrDefault();
+        }
+
+        public List<User> GetEmployees(int compID)
+        {
+            return conn.Table<User>().Where(x => x.CompanyID == compID).ToList();
         }
 
         public int UpdateUser(User user)

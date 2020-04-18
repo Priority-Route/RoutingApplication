@@ -32,5 +32,9 @@ namespace PriorityRoute.Views
         {
             await Navigation.PushAsync(new RouteScreen(this.user));
         }
+        private async void ManageReceptaclesClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ManageReceptacles());
+        }
     }
 }

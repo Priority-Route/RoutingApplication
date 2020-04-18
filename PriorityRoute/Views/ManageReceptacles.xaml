@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PriorityRoute.Views.ManageReceptacles" BackgroundColor="Black">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Manage Receptacles" TextColor="#4096FD" HorizontalOptions="CenterAndExpand" FontSize="30" Padding="0,40,0,80" />
+
+            <Label x:Name="Lbl_Name" Text="Please Enter a Name" TextColor="White" FontSize="18" />
+            <Entry x:Name="nameEntry" Placeholder="Name" PlaceholderColor="White" TextColor="White" />
+
+            <Label x:Name="Lbl_Latitude" Text="Please Enter a Latitude Coordinate" TextColor="White" FontSize="18" />
+            <Entry x:Name="latitudeEntry" Placeholder="Latitude" PlaceholderColor="White" TextColor="White" />
+
+            <Label x:Name="Lbl_Longitude" Text="Please Enter a Longitude Coordinate" TextColor="White" FontSize="18" />
+            <Entry x:Name="longitudeEntry" Placeholder="Longitude" PlaceholderColor="White" TextColor="White" />
+
+            <Label x:Name="Lbl_Info" Text="Please Enter Info about the Receptacle" TextColor="White" FontSize="18" />
+            <Entry x:Name="infoEntry" Placeholder="Info" PlaceholderColor="White" TextColor="White" />
+
+            <Button Text="Add Receptacle" Clicked="AddReceptacleClicked" VerticalOptions="EndAndExpand" BackgroundColor="#4096FD" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

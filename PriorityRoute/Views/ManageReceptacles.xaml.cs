@@ -11,13 +11,15 @@ namespace PriorityRoute.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ManageReceptacles : ContentPage
     {
+        User user;
         Receptacle receptacle;
         Receptacle receptacleToAdd = new Receptacle();
         DBReceptacleOps receptacleOps= new DBReceptacleOps();
 
-        public ManageReceptacles()
+        public ManageReceptacles(User user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
         private async void AddReceptacleClicked(object sender, EventArgs e)

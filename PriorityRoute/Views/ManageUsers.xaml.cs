@@ -40,6 +40,7 @@ namespace PriorityRoute.Views
 
                 user.Username = userNameEntry.Text;
                 user.Password = passwordEntry.Text;
+                user.Administrator = 0;
 
                 try
                 {

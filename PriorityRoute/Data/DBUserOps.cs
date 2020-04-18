@@ -19,6 +19,7 @@ namespace PriorityRoute.Data
             User admin = new User();
             admin.Username = "admin";
             admin.Password = "PRadmin01";
+            admin.Administrator = 1;
             this.AddUser(admin);
         }
 

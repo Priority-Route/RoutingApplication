@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PriorityRoute.Data;
-// using PriorityRoute.Models;
+using PriorityRoute.Models;
 using PriorityRoute.Views;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms;
@@ -27,8 +27,8 @@ namespace PriorityRoute.Views
                 var validData = userOps.VerifyUser(userNameEntry.Text, passwordEntry.Text);
                 if (validData)
                 {
-
-                    await Navigation.PushAsync(new MainPage());
+                    User user  = userOps.GetUser(userNameEntry.Text);
+                    await Navigation.PushAsync(new MainPage(user));
                 }
                 else
                 {

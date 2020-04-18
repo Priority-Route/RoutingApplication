@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using PriorityRoute.Models;
+using PriorityRoute.Data;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -8,10 +10,15 @@ namespace PriorityRoute.Views
 {
     public partial class RouteScreen : ContentPage
     {
-        public RouteScreen()
+        User user;
+        DBReceptacleOps recOps;
+
+        public RouteScreen(User user)
         {
             InitializeComponent();
             FindMyLocation();
+            this.user = user;
+            recOps = new DBReceptacleOps();
         }
 
         private async void OptimizeClicked(object sender, EventArgs e)
@@ -21,6 +28,8 @@ namespace PriorityRoute.Views
             var mapCenter = new Position(location.Latitude, location.Longitude);
             var pin = new Pin { Type = PinType.Generic, Position = mapCenter, Label = "MyCar" };
             theMap.Pins.Add(pin);
+
+            // recOps.AddReceptacle(user.CompanyID, "name", Position, "label");
         }
 
         private async void FindMyLocation()

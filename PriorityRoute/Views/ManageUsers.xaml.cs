@@ -11,14 +11,16 @@ namespace PriorityRoute.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ManageUsers : ContentPage
     {
-        User user = new User();
+        User user;
+        User userToAdd = new User();
         DBUserOps userOps = new DBUserOps();
 
-        public ManageUsers()
+        public ManageUsers(User user)
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
             userNameEntry.ReturnCommand = new Command(() => passwordEntry.Focus());
+            this.user = user;
         }
         private async void AddUserClicked(object sender, EventArgs e)
         {
@@ -38,13 +40,13 @@ namespace PriorityRoute.Views
             else
             {
 
-                user.Username = userNameEntry.Text;
-                user.Password = passwordEntry.Text;
-                user.Administrator = 0;
+                userToAdd.Username = userNameEntry.Text;
+                userToAdd.Password = passwordEntry.Text;
+                userToAdd.Administrator = 0;
 
                 try
                 {
-                    var returnvalue = userOps.AddUser(user);
+                    var returnvalue = userOps.AddUser(userToAdd);
                     if (returnvalue)
                     {
                         await DisplayAlert("User Add", "User Successfully Added to Database", "OK");
@@ -72,7 +74,7 @@ namespace PriorityRoute.Views
         }
         private async void HomeButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new MainPage());
+            await Navigation.PushAsync(new MainPage(this.user));
         }
     }
 }

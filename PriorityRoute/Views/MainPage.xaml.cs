@@ -15,19 +15,22 @@ namespace PriorityRoute.Views
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        public MainPage()
+        User user;
+
+        public MainPage(User user)
         {
             InitializeComponent();
+            this.user = user;
         }
 
         private async void ManageDriversClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ManageUsers());
+            await Navigation.PushAsync(new ManageUsers(this.user));
         }
 
         private async void FindMyRouteClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RouteScreen());
+            await Navigation.PushAsync(new RouteScreen(this.user));
         }
     }
 }

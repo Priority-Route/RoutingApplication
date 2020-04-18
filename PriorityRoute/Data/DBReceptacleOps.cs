@@ -28,12 +28,13 @@ namespace PriorityRoute.Data
             return false;
         }
 
-        public Boolean AddReceptacle(String name, double lat, double lon, String label)
+        public Boolean AddReceptacle(int compID, String name, double lat, double lon, String label)
         {
             String latToAdd = lat.ToString();
             String lonToAdd = lon.ToString();
 
             Receptacle pinToAdd = new Receptacle();
+            pinToAdd.CompanyID = compID;
             pinToAdd.Name = name;
             pinToAdd.Latitude = latToAdd;
             pinToAdd.Longitude = lonToAdd;
@@ -47,12 +48,12 @@ namespace PriorityRoute.Data
             return false;
         }
 
-        public Boolean AddReceptacle(String name, Position location, String label)
+        public Boolean AddReceptacle(int compID, String name, Position location, String label)
         {
             double latToAdd = location.Latitude;
             double lonToAdd = location.Longitude;
 
-            return AddReceptacle(name, latToAdd, lonToAdd, label);
+            return AddReceptacle(compID, name, latToAdd, lonToAdd, label);
         }
       
         public Receptacle GetReceptacle(int id)

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using SQLite;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using System.Linq;
 using PriorityRoute.Models;
 
@@ -14,10 +15,10 @@ namespace PriorityRoute.Data
         public DBPinOps()
         {
             conn = DependencyService.Get<ISQLite>().GetConnection();
-            conn.CreateTable<Pin>();
+            conn.CreateTable<PriorityRoute.Models.Pin>();
         }
 
-        public Boolean AddPin(Pin pin)
+        public Boolean AddPin(PriorityRoute.Models.Pin pin)
         {
             if (GetPin(pin.ID) == null)
             {
@@ -32,7 +33,7 @@ namespace PriorityRoute.Data
             String latToAdd = lat.ToString();
             String lonToAdd = lon.ToString();
 
-            Pin pinToAdd = new Pin();
+            PriorityRoute.Models.Pin pinToAdd = new PriorityRoute.Models.Pin();
             pinToAdd.Name = name;
             pinToAdd.Latitude = latToAdd;
             pinToAdd.Longitude = lonToAdd;
@@ -45,23 +46,31 @@ namespace PriorityRoute.Data
             }
             return false;
         }
+
+        public Boolean AddPin(String name, Position location, String label)
+        {
+            double latToAdd = location.Latitude;
+            double lonToAdd = location.Longitude;
+
+            return AddPin(name, latToAdd, lonToAdd, label);
+        }
       
-        public Pin GetPin(int id)
+        public PriorityRoute.Models.Pin GetPin(int id)
         {
-            return conn.Table<Pin>().Where(x => x.ID == id).FirstOrDefault();
+            return conn.Table<PriorityRoute.Models.Pin>().Where(x => x.ID == id).FirstOrDefault();
         }
 
-        public Pin GetPin(String name)
+        public PriorityRoute.Models.Pin GetPin(String name)
         {
-            return conn.Table<Pin>().Where(x => x.Name.Equals(name)).FirstOrDefault();
+            return conn.Table<PriorityRoute.Models.Pin>().Where(x => x.Name.Equals(name)).FirstOrDefault();
         }
 
-        public List<Pin> GetNetwork(int compID)
+        public List<PriorityRoute.Models.Pin> GetNetwork(int compID)
         {
-            return conn.Table<Pin>().Where(x => x.CompanyID == compID).ToList();
+            return conn.Table<PriorityRoute.Models.Pin>().Where(x => x.CompanyID == compID).ToList();
         }
 
-        public int UpdatePin(Pin pin)
+        public int UpdatePin(PriorityRoute.Models.Pin pin)
         {
             if (GetPin(pin.ID) != null)
             {
@@ -72,9 +81,9 @@ namespace PriorityRoute.Data
             return pin.ID;
         }
 
-        public int DeletePin(Pin pin)
+        public int DeletePin(PriorityRoute.Models.Pin pin)
         {
-            return conn.Delete<Pin>(pin.ID);
+            return conn.Delete<PriorityRoute.Models.Pin>(pin.ID);
         }
     }
 }

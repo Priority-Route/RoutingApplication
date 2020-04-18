@@ -20,7 +20,8 @@ namespace PriorityRoute.Data
             admin.Username = "admin";
             admin.Password = "PRadmin01";
             admin.Administrator = 1;
-            this.AddUser(admin);
+            admin.CompanyID = 1;
+            this.UpdateUser(admin);
         }
 
         public Boolean AddUser(User user)

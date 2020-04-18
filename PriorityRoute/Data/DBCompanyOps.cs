@@ -17,7 +17,7 @@ namespace PriorityRoute.Data
             
             Company admin = new Company();
             admin.Name = "Priority Route";
-            this.AddCompany(admin);
+            this.UpdateCompany(admin);
         }
 
         public Boolean AddCompany(Company comp)

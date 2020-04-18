@@ -40,5 +40,8 @@
     <Compile Update="Views\LogInPage.xaml.cs">
       <DependentUpon>LogInPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\RouteScreen.xaml.cs">
+      <DependentUpon>RouteScreen.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

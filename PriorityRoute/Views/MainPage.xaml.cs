@@ -27,7 +27,7 @@ namespace PriorityRoute.Views
 
         private async void FindMyRouteClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RoutingScreen());
+            await Navigation.PushAsync(new RouteScreen());
         }
     }
 }

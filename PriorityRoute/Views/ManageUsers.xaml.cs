@@ -11,8 +11,9 @@ namespace PriorityRoute.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ManageUsers : ContentPage
     {
-        User users = new User();
-        UserDatabaseController userDB = new UserDatabaseController();
+        User user = new User();
+        DBUserOps userOps = new DBUserOps();
+
         public ManageUsers()
         {
             InitializeComponent();
@@ -37,20 +38,20 @@ namespace PriorityRoute.Views
             else
             {
 
-                users.userName = userNameEntry.Text;
-                users.password = passwordEntry.Text;
+                user.Username = userNameEntry.Text;
+                user.Password = passwordEntry.Text;
 
                 try
                 {
-                    var retrunvalue = userDB.AddUser(users);
-                    if (retrunvalue == "Sucessfully Added")
+                    var returnvalue = userOps.AddUser(user);
+                    if (returnvalue)
                     {
-                        await DisplayAlert("User Add", retrunvalue, "OK");
+                        await DisplayAlert("User Add", "User Successfully Added to Database", "OK");
                         await Navigation.PushAsync(new LogInPage());
                     }
                     else
                     {
-                        await DisplayAlert("User Add", retrunvalue, "OK");
+                        await DisplayAlert("User Add", "Please Try Again", "OK");
 
 
                         userNameEntry.Text = string.Empty;

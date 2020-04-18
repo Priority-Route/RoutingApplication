@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using PriorityRoute.Data;
-using PriorityRoute.Models;
+// using PriorityRoute.Models;
 using PriorityRoute.Views;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms;
@@ -11,7 +11,7 @@ namespace PriorityRoute.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LogInPage : ContentPage
     {
-        UserDatabaseController userDB = new UserDatabaseController();
+        DBUserOps userOps = new DBUserOps();
         public LogInPage()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace PriorityRoute.Views
             if(userNameEntry.Text != null && passwordEntry.Text != null)
             {
 
-                var validData = userDB.LoginValidate(userNameEntry.Text, passwordEntry.Text);
+                var validData = userOps.VerifyUser(userNameEntry.Text, passwordEntry.Text);
                 if (validData)
                 {
 

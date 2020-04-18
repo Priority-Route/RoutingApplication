@@ -5,8 +5,8 @@ using Xamarin.Forms.Maps;
 
 namespace PriorityRoute.Models
 {
-    [Table("Pin")]
-    public class Pin
+    [Table("Receptacle")]
+    public class Receptacle
     {
         [PrimaryKey, AutoIncrement]
         public int ID {get; set;}
@@ -20,7 +20,7 @@ namespace PriorityRoute.Models
 
         public Position location;
 
-        public Pin()
+        public Receptacle()
         {
             double lat = Convert.ToDouble(this.Latitude);
             double lon = Convert.ToDouble(this.Longitude);

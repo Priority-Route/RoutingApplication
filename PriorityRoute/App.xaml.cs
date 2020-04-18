@@ -10,7 +10,7 @@ namespace PriorityRoute
     {
         static DBUserOps userDatabase;
         static DBCompanyOps companyDatabase;
-        static DBPinOps pinDatabase;
+        static DBReceptacleOps receptacleDatabase;
 
         public App()
         {
@@ -55,15 +55,15 @@ namespace PriorityRoute
             }
         }
 
-        public static DBPinOps BinDatabase
+        public static DBReceptacleOps ReceptacleDatabase
         {
             get
             {
-                if(pinDatabase == null)
+                if(receptacleDatabase == null)
                 {
-                    pinDatabase = new DBPinOps();
+                    receptacleDatabase = new DBReceptacleOps();
                 }
-                return pinDatabase;
+                return receptacleDatabase;
             }
         }
     }

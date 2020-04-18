@@ -13,15 +13,15 @@ namespace PriorityRoute.Models
         public String Name {get; set;}
 
         DBUserOps userOps = new DBUserOps();
-        DBPinOps pinOps = new DBPinOps();
+        DBReceptacleOps recOps = new DBReceptacleOps();
 
         public List<User> Employees;
-        public List<Pin> Network;
+        public List<Receptacle> Network;
 
         public Company()
         {
             Employees = userOps.GetEmployees(this.ID);
-            Network = pinOps.GetNetwork(this.ID);
+            Network = recOps.GetNetwork(this.ID);
         }
     }
 }

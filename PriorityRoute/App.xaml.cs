@@ -9,6 +9,8 @@ namespace PriorityRoute
     public partial class App : Application
     {
         static DBUserOps userDatabase;
+        static DBCompanyOps companyDatabase;
+        static DBBinOps binDatabase;
 
         public App()
         {
@@ -16,8 +18,6 @@ namespace PriorityRoute
 
             MainPage = new NavigationPage(new LogInPage());
         }
-
-        
 
         protected override void OnStart()
         {
@@ -30,6 +30,7 @@ namespace PriorityRoute
         protected override void OnResume()
         {
         }
+
         public static DBUserOps UserDatabase
         {
             get
@@ -39,6 +40,30 @@ namespace PriorityRoute
                     userDatabase = new DBUserOps();
                 }
                 return userDatabase;
+            }
+        }
+
+        public static DBCompanyOps CompanyDatabase
+        {
+            get
+            {
+                if(companyDatabase == null)
+                {
+                    companyDatabase = new DBCompanyOps();
+                }
+                return companyDatabase;
+            }
+        }
+
+        public static DBBinOps BinDatabase
+        {
+            get
+            {
+                if(binDatabase == null)
+                {
+                    binDatabase = new DBBinOps();
+                }
+                return binDatabase;
             }
         }
     }

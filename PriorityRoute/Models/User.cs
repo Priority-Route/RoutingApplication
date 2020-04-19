@@ -1,4 +1,9 @@
-﻿using System;
+﻿// File name: User.cs
+// Purpose: Create and manage users and their information
+// 
+// @author Christian Hakim
+
+using System;
 using SQLite;
 
 namespace PriorityRoute.Models

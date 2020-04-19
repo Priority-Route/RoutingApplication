@@ -1,3 +1,8 @@
+// File name: DBCompanyOps.cs
+// Purpose: provide users with access to the database Company table and methods to manipulate Company objects
+// 
+// @author Christian Hakim
+
 using System;
 using SQLite;
 using Xamarin.Forms;

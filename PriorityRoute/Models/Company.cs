@@ -1,3 +1,8 @@
+// File name: Company.cs
+// Purpose: Create and manage companies and their information
+// 
+// @author Christian Hakim
+
 using System;
 using System.Collections.Generic;
 using SQLite;

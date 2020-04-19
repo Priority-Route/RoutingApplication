@@ -1,3 +1,8 @@
+// File name: DBReceptacleOps.cs
+// Purpose: provide users with access to the database Receptacle table and methods to manipulate Receptacle objects
+// 
+// @author Christian Hakim
+
 using System;
 using System.Collections.Generic;
 using SQLite;

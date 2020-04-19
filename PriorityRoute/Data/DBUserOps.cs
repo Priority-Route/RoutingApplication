@@ -1,3 +1,8 @@
+// File name: DBUserOps.cs
+// Purpose: provide users with access to the database User table and methods to manipulate User objects
+// 
+// @author Christian Hakim
+
 using System;
 using System.Collections.Generic;
 using SQLite;

@@ -1,4 +1,9 @@
-﻿using System;
+﻿// File name: Directions.cs
+// Purpose: Provide a URL given two points to fetch direction data from Google Maps
+// 
+// @author Christian Hakim and Phillip Ruggirello
+
+using System;
 using Xamarin.Forms.Maps;
 
 namespace PriorityRoute.Models

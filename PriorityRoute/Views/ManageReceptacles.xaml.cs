@@ -1,4 +1,9 @@
-﻿using System;
+﻿// File name: ManageReceptacles.xaml.cs
+// Purpose: Supporting C# code for ManageReceptacles.xaml
+// 
+// @author Phillip Ruggirello
+
+using System;
 using System.Collections.Generic;
 using PriorityRoute.Data;
 using PriorityRoute.Models;
@@ -12,55 +17,71 @@ namespace PriorityRoute.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ManageReceptacles : ContentPage
     {
+        // logged in user information
         User user;
         Receptacle receptacle;
         Receptacle receptacleToAdd = new Receptacle();
+
+        // object to access Receptacle database
         DBReceptacleOps receptacleOps= new DBReceptacleOps();
 
+        // opens page with valid user information
         public ManageReceptacles(User user)
         {
             InitializeComponent();
             this.user = user;
         }
 
+        // removes all receptacles from database in a given company
         private async void RemoveReceptaclesClicked(object sender, EventArgs e)
         {
+            // gets all receptacles given the user's company
             List<Receptacle> network = receptacleOps.GetNetwork(user.CompanyID);
+            
+            // for every receptacle in the network
             foreach (Receptacle bin in network)
             {
+                // delete the receptacle
                 receptacleOps.DeleteReceptacle(bin);
             }
         }
 
+        // adds receptacle to the map view
         private async void AddReceptacleClicked(object sender, EventArgs e)
         {
+            // if any field is invalid
             if ((string.IsNullOrWhiteSpace(nameEntry.Text)) || (string.IsNullOrEmpty(nameEntry.Text)) ||
                 (string.IsNullOrWhiteSpace(latitudeEntry.Text)) || (string.IsNullOrEmpty(latitudeEntry.Text)) ||
                 (string.IsNullOrWhiteSpace(longitudeEntry.Text)) || (string.IsNullOrEmpty(longitudeEntry.Text)) ||
                 (string.IsNullOrWhiteSpace(infoEntry.Text)) || (string.IsNullOrEmpty(infoEntry.Text)))
             {
-                await DisplayAlert("Enter Data", "Enter Valid Data", "OK");
+                // try inputting data again
+                await DisplayAlert("Receptacle to Add", "Please Try Again", "OK");
             }
+            // if all fields are valid
             else
             {
+                // set information in tentative receptacle with inputted data
                 receptacleToAdd.Name = nameEntry.Text;
-                 receptacleToAdd.Latitude = latitudeEntry.Text;
-                 receptacleToAdd.Longitude = longitudeEntry.Text;
+                receptacleToAdd.Latitude = latitudeEntry.Text;
+                receptacleToAdd.Longitude = longitudeEntry.Text;
                 receptacleToAdd.Label = infoEntry.Text;
-
-                //Position location = new Position(
-                //    Convert.ToDouble(latitudeEntry.Text),
-                //    Convert.ToDouble(longitudeEntry.Text)
-                //);
-                //receptacleToAdd.Location = location;
+                
+                // set company to Priority Route for now (REMOVE AT DEPLOYMENT)
                 receptacleToAdd.CompanyID = 1;
+
                 try
                 {
+                    // add receptacle with information to database
                     var returnvalue = receptacleOps.AddReceptacle(receptacleToAdd);
+
+                    // if addition is successful
                     if (returnvalue)
                     {
-                        await DisplayAlert("Receptacle to Add", "Please Try Again", "OK");
+                        // display success message
+                        await DisplayAlert("Successful Addition", "Entered Valid Data", "OK");
 
+                        // reset data entry fields
                         nameEntry.Text = string.Empty;
                         latitudeEntry.Text = string.Empty;
                         longitudeEntry.Text = string.Empty;

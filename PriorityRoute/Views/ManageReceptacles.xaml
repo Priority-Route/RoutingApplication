@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PriorityRoute.Views.ManageReceptacles" BackgroundColor="Black">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Manage Receptacles" TextColor="#4096FD" HorizontalOptions="CenterAndExpand" FontSize="30" Padding="0,40,0,80" />
+        <StackLayout Padding="40,0,40,0">
+            <Label Text="Manage Receptacles" TextColor="#4096FD" HorizontalOptions="CenterAndExpand" FontSize="30" Padding="0,0,0,40"/>
 
             <Label x:Name="Lbl_Name" Text="Please Enter a Name" TextColor="White" FontSize="18" />
             <Entry x:Name="nameEntry" Placeholder="Name" PlaceholderColor="White" TextColor="White" />

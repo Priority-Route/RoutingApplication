@@ -18,6 +18,7 @@ namespace PriorityRoute.Views
         DBReceptacleOps recOps;
         DBCompanyOps compOps;
 
+
         List<Receptacle> network;
         readonly List<Polyline> plottedRoutes = new List<Polyline>();
         readonly Color[] color = { Color.Red, Color.Blue, Color.Green, Color.Yellow };
@@ -30,7 +31,7 @@ namespace PriorityRoute.Views
             this.compOps = new DBCompanyOps();
             this.user = user;
             this.comp = compOps.GetCompany(user.CompanyID);
-            this.network = this.comp.Network; 
+            
         }
 
         private async void AddReceptaclesClicked(object sender, EventArgs e)
@@ -38,27 +39,32 @@ namespace PriorityRoute.Views
             // If you want your location
             //var location = await Geolocation.GetLastKnownLocationAsync();
 
-            var location = new Position(41.1588, 73.2574);
-            var theMap = FindByName("map") as Xamarin.Forms.Maps.Map;
-            var mapCenter = new Position(location.Latitude, location.Longitude);
-            var pin = new Pin { Type = PinType.Generic, Position = mapCenter, Label = "MyCar" };
-            theMap.Pins.Add(pin);
+            List<Receptacle> network = recOps.GetNetwork(user.CompanyID);             foreach (Receptacle bin in network)
+            {
+                //var location = bin.Location;
+                var theMap = FindByName("map") as Xamarin.Forms.Maps.Map;
+                //var mapCenter = new Position(location.Latitude, location.Longitude);
+                var pin = new Pin { Type = PinType.Generic, Position = bin.Location, Label = bin.Label };
+                theMap.Pins.Add(pin);
+            }
 
+
+                
             // recOps.AddReceptacle(user.CompanyID, "name", Position, "label");
         }
 
         private async void OnShowRoute(object sender, Xamarin.Forms.Maps.MapClickedEventArgs e)
         {
-            var result = await DirectionsApi.GetRoute()
+            //var result = await DirectionsApi.GetRoute()
         }
 
         private async void FindMyLocation()
         {
             try
             {
-                //var location = await Geolocation.GetLastKnownLocationAsync();
+                var location = await Geolocation.GetLastKnownLocationAsync();
 
-                var location = new Position(41.1408, 73.2613);
+                //var location = new Position(41.1408, 73.2613);
 
                 if (location != null)
                 {

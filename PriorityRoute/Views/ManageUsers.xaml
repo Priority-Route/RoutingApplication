@@ -1,56 +1,30 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PriorityRoute.Views.ManageUsers" BackgroundColor="Black">
     <ContentPage.Content>
-        <StackLayout Padding="40,35,40,10">
-            <Label Text="Manage Users"
-                   TextColor="#5299E7"
-                   HorizontalOptions="CenterAndExpand"
-                   FontSize="30"
-                   Padding="0,0,0,40"
-                   />
-            <Label x:Name="Lbl_Username"
-                   Text="Please Enter a Username"
-                   TextColor="White"
-                   FontSize="18"
-                   />
-            <Entry x:Name="userNameEntry"
-                   Placeholder="Username"
-                   PlaceholderColor="White"
-                   TextColor="White"
-                   />
-            <Label x:Name="Lbl_Password"
-                   Text="Please Enter a Password"
-                   TextColor="White"
-                   FontSize="18"
-                   />
-            <Entry x:Name="passwordEntry"
-                   Placeholder="Password"
-                   PlaceholderColor="White"
-                   TextColor="White"
-                   />
-            <Grid Padding="0,20,0,0">
-                <Button Text="Add User"
-                        Clicked="AddUserClicked"
-                        Grid.Row="0" Grid.Column="0"
-                        BackgroundColor="#5299E7"
-                        />
-                <Button Text="Remove User"
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        BackgroundColor="#5299E7"
-                        />
-                <Button Text="Home"
-                        Clicked="HomeButtonClicked"
-                        Grid.ColumnSpan="2"
-                        Grid.Row="1"
+        <StackLayout>
+
+            <!-- Adds the title manage users to the screen-->
+            <Label Text="Manage Users" TextColor="#4096FD" HorizontalOptions="CenterAndExpand" FontSize="30" Padding="0,40,0,80"/>
+
+            <!-- Adds the Enter username text field as well as the enter password text field.-->
+            <Label x:Name="Lbl_Username" Text="Please Enter a Username" TextColor="White" FontSize="18" />
+            <Entry x:Name="userNameEntry" Placeholder="Username" PlaceholderColor="White" TextColor="White" />
+            <Label x:Name="Lbl_Password" Text="Please Enter a Password" TextColor="White" FontSize="18" />
+            <Entry x:Name="passwordEntry" Placeholder="Password" PlaceholderColor="White" TextColor="White" />
+
+            <Grid VerticalOptions="EndAndExpand">
+                <!-- Adds the buttons to add and remove users. Also adds the Home button to return to the main page, and the log out button to return to the login screen.-->
+                <Button Text="Add User" Clicked="AddUserClicked" Grid.Row="0" Grid.Column="0" BackgroundColor="#1E90FF" />
+                <Button Text="Remove User" Grid.Row="0" Grid.Column="1" BackgroundColor="#1E90FF" />
+                <Button Text="Home" Clicked="HomeButtonClicked" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" BackgroundColor="#1E90FF" />
+                <Button Text="Log Out"
+                        Clicked="LogOutClicked"
+                        BackgroundColor="#1E90FF"
+                        Grid.Row="2"
                         Grid.Column="0"
-                        BackgroundColor="#5299E7"
-                        />
+                        Grid.ColumnSpan="2"/>
             </Grid>
-            <Label Text="PriorityRoute®"
-                   HorizontalOptions="Center"
-                   VerticalOptions="EndAndExpand"
-                   TextColor="AliceBlue"/>
+             
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

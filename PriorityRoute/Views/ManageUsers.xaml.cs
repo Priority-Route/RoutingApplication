@@ -42,8 +42,12 @@ namespace PriorityRoute.Views
                 (string.IsNullOrEmpty(passwordEntry.Text)))
 
             {
+<<<<<<< Updated upstream
                 // display error message
                 await DisplayAlert("Enter Data", "Enter Valid Data", "OK");
+=======
+                await DisplayAlert("Invalid Entry", "Please Make Sure That the Data You Have Entered is Correct.", "OK");
+>>>>>>> Stashed changes
             }
             // if all of the fields are valid
             else
@@ -95,6 +99,10 @@ namespace PriorityRoute.Views
         private async void HomeButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+        private async void LogOutClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LogInPage());
         }
     }
 }

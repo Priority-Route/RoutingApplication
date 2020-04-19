@@ -3,9 +3,14 @@
     <ContentPage.Content>
         <StackLayout x:Name="PriorityRouteMap">
 
+            <!-- Adds the map. -->
             <map:Map x:Name="map" />
 
+            <!-- Adds the Button Add receptacles which upon being clicked will add pins at the locations of the receptacle that were added on the manage receptacles page.-->
             <Button Text="Add Receptacle" Clicked="AddReceptaclesClicked" BackgroundColor="#5299E7" />
+
+            <!-- Adds the Logout button which upon being clicked will send the user to the login page.-->
+            <Button Text="Log Out" Clicked="LogOutClicked" BackgroundColor="#5299E7" />
             
         </StackLayout>
     </ContentPage.Content>

@@ -2,12 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="PriorityRoute.Views.ManageReceptacles" BackgroundColor="Black">
     <ContentPage.Content>
         <StackLayout Padding="40,35,40,0">
+
+            <!-- Title of page -->
             <Label Text="Manage Receptacles"
                    TextColor="#5299E7"
                    HorizontalOptions="CenterAndExpand"
                    FontSize="30"
                    Padding="0,0,0,35"
                    />
+
+            <!-- Adds the Label and text field to enter the name of the receptacle.-->
             <Label x:Name="Lbl_Name"
                    Text="Receptacle Name:"
                    TextColor="White"
@@ -18,37 +22,27 @@
                    PlaceholderColor="White"
                    TextColor="White"
                    />
+
+            <!-- Adds the label and text field to add the latitude and longitude to be stored as the coordinates of the receptacle.-->
             <Label x:Name="Lbl_Coordinates"
                    Text="Coordinates:"
                    TextColor="White"
                    FontSize="18"
                    />
-            <!--
-            <Label x:Name="Lbl_Latitude"
-                   Text="Please Enter a Latitude Value"
-                   TextColor="White"
-                   FontSize="18"
-                   />
-            -->
             <Entry x:Name="latitudeEntry"
                    Placeholder="Latitude"
                    PlaceholderColor="White"
                    TextColor="White"
                    Margin="0,0,0,-5"
                    />
-            <!--
-            <Label x:Name="Lbl_Longitude"
-                   Text="Please Enter a Longitude Value"
-                   TextColor="White"
-                   FontSize="18"
-                   />
-            -->
             <Entry x:Name="longitudeEntry"
                    Placeholder="Longitude"
                    PlaceholderColor="White"
                    TextColor="White"
                    Margin="0,-5,0,0"
                    />
+
+            <!-- Adds the additional information label as well as the field to enter this information -->
             <Label x:Name="Lbl_Info"
                    Text="Additional Information:"
                    TextColor="White"
@@ -59,6 +53,8 @@
                    PlaceholderColor="White"
                    TextColor="White"
                    />
+
+            <!-- Adds the buttons to add a receptacle, remove all receptacles, as well as return to the login page.-->
             <Button Text="Add Receptacle"
                     Clicked="AddReceptacleClicked"
                     BackgroundColor="#5299E7"
@@ -68,11 +64,16 @@
                     Clicked="RemoveReceptaclesClicked"
                     BackgroundColor="#5299E7"
                     Margin="0,15,0,0"/>
+            <Button Text="Log Out"
+                    Clicked="LogOutClicked"
+                    BackgroundColor="#5299E7"
+                    Margin="0,15,0,0"/>
             <Label Text="PriorityRoute®"
                    HorizontalOptions="Center"
                    VerticalOptions="EndAndExpand"
                    TextColor="AliceBlue"
                    />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -75,6 +75,7 @@ namespace PriorityRoute.Views
                     // place pin on map view
                     var pin = new Pin { Type = PinType.Generic, Position = pinLocation, Label = bin.Label };
                     theMap.Pins.Add(pin);
+                    await DisplayAlert("Receptacles Added", "The Receptacles Have Been Added to the Map.", "OK");
                 }
                 // in case the conversion from String to double is unsuccessful
                 catch
@@ -82,6 +83,7 @@ namespace PriorityRoute.Views
                     var pinLocation = new Position(bin.CompanyID, bin.ID);
                     var pin = new Pin { Type = PinType.Generic, Position = pinLocation, Label = bin.Label };
                     theMap.Pins.Add(pin);
+                    await DisplayAlert("Receptacles Added", "The Receptacles Have Been Added to the Map.", "OK");
                 }
             }
 
@@ -95,6 +97,10 @@ namespace PriorityRoute.Views
         private async void OnShowRoute(object sender, Xamarin.Forms.Maps.MapClickedEventArgs e)
         {
             //var result = await DirectionsApi.GetRoute()
+        }
+        private async void LogOutClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LogInPage());
         }
 
         private async void FindMyLocation()

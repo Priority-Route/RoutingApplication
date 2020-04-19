@@ -47,5 +47,9 @@ namespace PriorityRoute.Views
         {
             await Navigation.PushAsync(new ManageReceptacles(this.user));
         }
+        private async void LogOutClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LogInPage());
+        }
     }
 }

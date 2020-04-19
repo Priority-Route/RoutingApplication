@@ -21,9 +21,8 @@ namespace PriorityRoute.Views
 
         public async void LoginClicked(object sender, EventArgs e)
         {
-            if(userNameEntry.Text != null && passwordEntry.Text != null)
+            if (userNameEntry.Text != null && passwordEntry.Text != null)
             {
-
                 var validData = userOps.VerifyUser(userNameEntry.Text, passwordEntry.Text);
                 if (validData)
                 {

@@ -44,15 +44,32 @@ namespace PriorityRoute.Views
             {
                 //var location = bin.Location;
                 var theMap = FindByName("map") as Xamarin.Forms.Maps.Map;
-                //var mapCenter = new Position(location.Latitude, location.Longitude);
-                var pin = new Pin { Type = PinType.Generic, Position = bin.Location, Label = bin.Label };
-                theMap.Pins.Add(pin);
+
+                try
+                {
+                    double lat;
+                    double lon;
+                    double.TryParse(bin.Latitude, out lat);
+                    double.TryParse(bin.Longitude, out lon);
+                    var pinLocation = new Position(lat, lon);
+                    var pin = new Pin { Type = PinType.Generic, Position = pinLocation, Label = bin.Label };
+                    theMap.Pins.Add(pin);
+                }
+
+                catch
+                {
+                    var pinLocation = new Position(bin.CompanyID, bin.ID);
+                    var pin = new Pin { Type = PinType.Generic, Position = pinLocation, Label = bin.Label };
+                    theMap.Pins.Add(pin);
+                }
             }
 
 
                 
             // recOps.AddReceptacle(user.CompanyID, "name", Position, "label");
         }
+
+        
 
         private async void OnShowRoute(object sender, Xamarin.Forms.Maps.MapClickedEventArgs e)
         {
@@ -63,9 +80,9 @@ namespace PriorityRoute.Views
         {
             try
             {
-                var location = await Geolocation.GetLastKnownLocationAsync();
+                //var location = await Geolocation.GetLastKnownLocationAsync();
 
-                //var location = new Position(41.1408, 73.2613);
+                var location = new Position(41.1408, -73.2613);
 
                 if (location != null)
                 {

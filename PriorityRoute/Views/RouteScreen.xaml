@@ -5,7 +5,8 @@
 
             <map:Map x:Name="map" />
 
-            <Button Text="Add Receptacles" Clicked="AddReceptaclesClicked" BackgroundColor="#5299E7" />
+            <Button Text="Add Receptacle" Clicked="AddReceptaclesClicked" BackgroundColor="#5299E7" />
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

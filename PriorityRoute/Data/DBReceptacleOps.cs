@@ -97,7 +97,7 @@ namespace PriorityRoute.Data
         // udpates receptacle in database
         // requires receptacle object
         // returns receptacle ID
-        public int UpdatePin(Receptacle rec)
+        public int UpdateReceptacle(Receptacle rec)
         {
             if (GetReceptacle(rec.ID) != null)
             {
@@ -111,7 +111,7 @@ namespace PriorityRoute.Data
         // deletes receptacle in database
         // requires receptacle object
         // returns receptacle ID
-        public int DeletePin(Receptacle rec)
+        public int DeleteReceptacle(Receptacle rec)
         {
             return conn.Delete<Receptacle>(rec.ID);
         }

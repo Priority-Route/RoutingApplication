@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Java.Security;
 using SQLite;
 using Xamarin.Forms.Maps;
 
@@ -24,8 +25,12 @@ namespace PriorityRoute.Models
         public Receptacle()
         {
             // converting String values to doubles for Position object
+
             double lat = Convert.ToDouble(this.Latitude);
             double lon = Convert.ToDouble(this.Longitude);
+
+            //double lat = double.TryParse(this.Latitude, out double);
+            //double lon = double.TryParse(this.Longitude, out double);
 
             // setting location object with values from database
             this.Location = new Position(lat, lon);

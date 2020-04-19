@@ -23,6 +23,15 @@ namespace PriorityRoute.Views
             this.user = user;
         }
 
+        private async void RemoveReceptaclesClicked(object sender, EventArgs e)
+        {
+            List<Receptacle> network = receptacleOps.GetNetwork(user.CompanyID);
+            foreach (Receptacle bin in network)
+            {
+                receptacleOps.DeleteReceptacle(bin);
+            }
+        }
+
         private async void AddReceptacleClicked(object sender, EventArgs e)
         {
             if ((string.IsNullOrWhiteSpace(nameEntry.Text)) || (string.IsNullOrEmpty(nameEntry.Text)) ||
@@ -35,15 +44,15 @@ namespace PriorityRoute.Views
             else
             {
                 receptacleToAdd.Name = nameEntry.Text;
-                // receptacleToAdd.Latitude = latitudeEntry.Text;
-                // receptacleToAdd.Longitude = longitudeEntry.Text;
+                 receptacleToAdd.Latitude = latitudeEntry.Text;
+                 receptacleToAdd.Longitude = longitudeEntry.Text;
                 receptacleToAdd.Label = infoEntry.Text;
 
-                Position location = new Position(
-                    Convert.ToDouble(latitudeEntry.Text),
-                    Convert.ToDouble(longitudeEntry.Text)
-                );
-                receptacleToAdd.Location = location;
+                //Position location = new Position(
+                //    Convert.ToDouble(latitudeEntry.Text),
+                //    Convert.ToDouble(longitudeEntry.Text)
+                //);
+                //receptacleToAdd.Location = location;
                 receptacleToAdd.CompanyID = 1;
                 try
                 {

@@ -64,6 +64,10 @@
                     BackgroundColor="#5299E7"
                     Margin="0,15,0,0"
                     />
+            <Button Text="Remove Receptacles"
+                    Clicked="RemoveReceptaclesClicked"
+                    BackgroundColor="#5299E7"
+                    Margin="0,15,0,0"/>
             <Label Text="PriorityRoute®"
                    HorizontalOptions="Center"
                    VerticalOptions="EndAndExpand"

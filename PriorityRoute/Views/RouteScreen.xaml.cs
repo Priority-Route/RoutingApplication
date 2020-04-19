@@ -1,7 +1,7 @@
 ﻿// File name: RouteScreen.xaml.cs
 // Purpose: Supporting C# code for RouteScreen.xaml
 // 
-// @author Phillip Ruggirello
+// @author Philip Ruggirello
 
 using System;
 using System.Collections.Generic;

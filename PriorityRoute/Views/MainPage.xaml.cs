@@ -1,7 +1,7 @@
 ﻿// File name: MainPage.xaml.cs
 // Purpose: Supporting C# code for MainPage.xaml
 // 
-// @author Phillip Ruggirello
+// @author Philip Ruggirello
 
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,7 @@
 ﻿// File name: ManageUsers.xaml.cs
 // Purpose: Supporting C# code for ManageUsers.xaml
 // 
-// @author Phillip Ruggirello
+// @author Philip Ruggirello
 
 using System;
 using System.Collections.Generic;
@@ -42,12 +42,9 @@ namespace PriorityRoute.Views
                 (string.IsNullOrEmpty(passwordEntry.Text)))
 
             {
-<<<<<<< Updated upstream
                 // display error message
-                await DisplayAlert("Enter Data", "Enter Valid Data", "OK");
-=======
                 await DisplayAlert("Invalid Entry", "Please Make Sure That the Data You Have Entered is Correct.", "OK");
->>>>>>> Stashed changes
+
             }
             // if all of the fields are valid
             else

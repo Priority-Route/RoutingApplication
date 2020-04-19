@@ -1,7 +1,7 @@
 ﻿// File name: ManageReceptacles.xaml.cs
 // Purpose: Supporting C# code for ManageReceptacles.xaml
 // 
-// @author Phillip Ruggirello
+// @author Philip Ruggirello
 
 using System;
 using System.Collections.Generic;
@@ -32,15 +32,11 @@ namespace PriorityRoute.Views
             this.user = user;
         }
 
-<<<<<<< Updated upstream
-        // removes all receptacles from database in a given company
-=======
         private async void LogOutClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new LogInPage());
         }
 
->>>>>>> Stashed changes
         private async void RemoveReceptaclesClicked(object sender, EventArgs e)
         {
             // gets all receptacles given the user's company
@@ -64,12 +60,10 @@ namespace PriorityRoute.Views
                 (string.IsNullOrWhiteSpace(longitudeEntry.Text)) || (string.IsNullOrEmpty(longitudeEntry.Text)) ||
                 (string.IsNullOrWhiteSpace(infoEntry.Text)) || (string.IsNullOrEmpty(infoEntry.Text)))
             {
-<<<<<<< Updated upstream
+
                 // try inputting data again
-                await DisplayAlert("Receptacle to Add", "Please Try Again", "OK");
-=======
                 await DisplayAlert("Invalid Receptacle Data", "Please Make Sure the Data You Are Entering is Correct", "OK");
->>>>>>> Stashed changes
+
             }
             // if all fields are valid
             else
@@ -91,12 +85,10 @@ namespace PriorityRoute.Views
                     // if addition is successful
                     if (returnvalue)
                     {
-<<<<<<< Updated upstream
+
                         // display success message
-                        await DisplayAlert("Successful Addition", "Entered Valid Data", "OK");
-=======
                         await DisplayAlert("Receptacle Added", "The Receptacle You Added Has Been Added to the Map", "OK");
->>>>>>> Stashed changes
+
 
                         // reset data entry fields
                         nameEntry.Text = string.Empty;

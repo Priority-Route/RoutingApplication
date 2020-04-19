@@ -1,15 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="PriorityRoute.Views.MainPage" BackgroundColor="Black">
-<<<<<<< Updated upstream
+
     <StackLayout Padding="40,35,40,0">
         <Image Source="FullSizeRender"
                Margin="0,0,0,35"
                />
-=======
-    <StackLayout Padding="50,60,50,0">
-        <Image Source="FullSizeRender" />
 
->>>>>>> Stashed changes
         <Button Text="Find My Route"
                 Clicked="FindMyRouteClicked"
                 HorizontalOptions="CenterAndExpand"
@@ -38,7 +34,6 @@
                 CornerRadius="20"
                 BorderWidth="2"
                 BackgroundColor="#5299E7"
-<<<<<<< Updated upstream
                 TextColor="Black"
                 />
         <Label Text="PriorityRoute®"
@@ -46,9 +41,6 @@
                VerticalOptions="EndAndExpand"
                TextColor="AliceBlue"
                />
-=======
-                TextColor="Black" />
-        
->>>>>>> Stashed changes
+
     </StackLayout>
 </ContentPage>

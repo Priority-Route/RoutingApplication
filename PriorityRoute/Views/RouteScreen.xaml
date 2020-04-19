@@ -5,7 +5,7 @@
 
             <map:Map x:Name="map" />
 
-            <Button Text="Optimize My Route!" Clicked="OptimizeClicked" BackgroundColor="#5299E7" />
+            <Button Text="Add Receptacles" Clicked="AddReceptaclesClicked" BackgroundColor="#5299E7" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -5,6 +5,7 @@ using PriorityRoute.Models;
 using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamarin.Forms.Maps;
 
 namespace PriorityRoute.Views
 {
@@ -34,9 +35,14 @@ namespace PriorityRoute.Views
             else
             {
                 receptacleToAdd.Name = nameEntry.Text;
-                receptacleToAdd.Latitude = latitudeEntry.Text;
-                receptacleToAdd.Longitude = longitudeEntry.Text;
+                // receptacleToAdd.Latitude = latitudeEntry.Text;
+                // receptacleToAdd.Longitude = longitudeEntry.Text;
                 receptacleToAdd.Label = infoEntry.Text;
+
+                Position location = new Position(
+                    Convert.ToDouble(latitudeEntry.Text),
+                    Convert.ToDouble(longitudeEntry.Text));
+                receptacleToAdd.Location = location;
 
                 try
                 {

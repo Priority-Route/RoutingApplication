@@ -24,7 +24,7 @@ namespace PriorityRoute.Views
             recOps = new DBReceptacleOps();
         }
 
-        private async void OptimizeClicked(object sender, EventArgs e)
+        private async void AddReceptaclesClicked(object sender, EventArgs e)
         {
             // If you want your location
             //var location = await Geolocation.GetLastKnownLocationAsync();
@@ -36,6 +36,11 @@ namespace PriorityRoute.Views
             theMap.Pins.Add(pin);
 
             // recOps.AddReceptacle(user.CompanyID, "name", Position, "label");
+        }
+
+        private async void OnShowRoute(object sender, Xamarin.Forms.Maps.MapClickedEventArgs e)
+        {
+
         }
 
         private async void FindMyLocation()
@@ -54,6 +59,8 @@ namespace PriorityRoute.Views
                     var mapCenter = new Position(location.Latitude, location.Longitude);
 
                     theMap.MoveToRegion(MapSpan.FromCenterAndRadius(mapCenter, Distance.FromMiles(1)));
+
+                    theMap.MapClicked += OnShowRoute;
                 }
             }
             catch (FeatureNotSupportedException fnsEx)

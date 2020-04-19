@@ -18,13 +18,13 @@ namespace PriorityRoute.Models
         public String Label {get; set;}
         public String Type {get; set;}
 
-        public Position location;
+        public Position Location;
 
         public Receptacle()
         {
             double lat = Convert.ToDouble(this.Latitude);
             double lon = Convert.ToDouble(this.Longitude);
-            this.location = new Position(lat, lon);
+            this.Location = new Position(lat, lon);
         }
     }
 }

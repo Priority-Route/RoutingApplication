@@ -10,14 +10,22 @@ namespace PriorityRoute.Data
 {
     public class DBReceptacleOps
     {
+        // opening connection to database
         SQLiteConnection conn;
 
+        // initiating constructor
+        // creating necessary objects
         public DBReceptacleOps()
         {
+            // setting connection to database file
+            // creating applicable table
             conn = DependencyService.Get<ISQLite>().GetConnection();
             conn.CreateTable<Receptacle>();
         }
 
+        // add receptacle to database
+        // requires receptacle object
+        // returns boolean
         public Boolean AddReceptacle(Receptacle pin)
         {
             if (GetReceptacle(pin.ID) == null)
@@ -28,6 +36,9 @@ namespace PriorityRoute.Data
             return false;
         }
 
+        // add receptacle to database
+        // requires company ID, receptacle name, receptacle latitude, receptacle longitude, receptacle label
+        // returns boolean
         public Boolean AddReceptacle(int compID, String name, double lat, double lon, String label)
         {
             String latToAdd = lat.ToString();
@@ -48,6 +59,9 @@ namespace PriorityRoute.Data
             return false;
         }
 
+        // add receptacle to database
+        // requires company ID, receptacle name, receptacle Position, receptacle label
+        // returns boolean
         public Boolean AddReceptacle(int compID, String name, Position location, String label)
         {
             double latToAdd = location.Latitude;
@@ -56,21 +70,33 @@ namespace PriorityRoute.Data
             return AddReceptacle(compID, name, latToAdd, lonToAdd, label);
         }
       
+        // get receptacle from database
+        // requires receptacle ID
+        // returns receptacle object
         public Receptacle GetReceptacle(int id)
         {
             return conn.Table<Receptacle>().Where(x => x.ID == id).FirstOrDefault();
         }
 
+        // get receptacle from database
+        // requires receptacle name
+        // returns receptacle object
         public Receptacle GetReceptacle(String name)
         {
             return conn.Table<Receptacle>().Where(x => x.Name.Equals(name)).FirstOrDefault();
         }
 
+        // gets all receptacles from database in a company
+        // requires company ID
+        // returns List of receptacle objects
         public List<Receptacle> GetNetwork(int compID)
         {
             return conn.Table<Receptacle>().Where(x => x.CompanyID == compID).ToList();
         }
 
+        // udpates receptacle in database
+        // requires receptacle object
+        // returns receptacle ID
         public int UpdatePin(Receptacle rec)
         {
             if (GetReceptacle(rec.ID) != null)
@@ -82,6 +108,9 @@ namespace PriorityRoute.Data
             return rec.ID;
         }
 
+        // deletes receptacle in database
+        // requires receptacle object
+        // returns receptacle ID
         public int DeletePin(Receptacle rec)
         {
             return conn.Delete<Receptacle>(rec.ID);

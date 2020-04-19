@@ -12,6 +12,7 @@ namespace PriorityRoute.Models
         public int ID {get; set;}
         public String Name {get; set;}
 
+        // creating objects to access user and receptacle databases
         DBUserOps userOps = new DBUserOps();
         DBReceptacleOps recOps = new DBReceptacleOps();
 

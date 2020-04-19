@@ -49,7 +49,7 @@ namespace PriorityRoute.Views
 
         private async void OnShowRoute(object sender, Xamarin.Forms.Maps.MapClickedEventArgs e)
         {
-            var result = await DirectionsApi.GetRoute()
+            //var result = await DirectionsApi.GetRoute()
         }
 
         private async void FindMyLocation()

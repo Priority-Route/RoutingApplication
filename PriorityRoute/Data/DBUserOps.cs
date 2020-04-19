@@ -9,13 +9,20 @@ namespace PriorityRoute.Data
 {
     public class DBUserOps
     {
+        // opening connection to database
         SQLiteConnection conn;
 
+
+        // initiating constructor
+        // creating necessary objects
         public DBUserOps()
         {
+            // setting connection to database file
+            // creating applicable table
             conn = DependencyService.Get<ISQLite>().GetConnection();
             conn.CreateTable<User>();
 
+            // instantiating default (admin) user/company information
             User admin = new User();
             admin.Username = "admin";
             admin.Password = "PRadmin01";
@@ -24,6 +31,9 @@ namespace PriorityRoute.Data
             this.UpdateUser(admin);
         }
 
+        // adds user to database
+        // requires user object
+        // returns boolean
         public Boolean AddUser(User user)
         {
             if (GetUser(user.Username) == null)
@@ -34,6 +44,9 @@ namespace PriorityRoute.Data
             return false;
         }
 
+        // verifies user login credentials
+        // requires user username, user password
+        // returns boolean
         public Boolean VerifyUser(String username, String password)
         {
             User toVerify = GetUser(username);
@@ -47,21 +60,33 @@ namespace PriorityRoute.Data
             return false;
         }
 
+        // gets user from database
+        // requires user ID
+        // returns user object
         public User GetUser(int id)
         {
             return conn.Table<User>().Where(x => x.ID == id).FirstOrDefault();
         }
 
+        // gets user from database
+        // requires user username
+        // returns user object
         public User GetUser(String username)
         {
             return conn.Table<User>().Where(x => x.Username == username).FirstOrDefault();
         }
 
+        // gets users from database for certain company
+        // requires company ID
+        // returns List of user objects
         public List<User> GetEmployees(int compID)
         {
             return conn.Table<User>().Where(x => x.CompanyID == compID).ToList();
         }
 
+        // updates user information in database
+        // requires user object
+        // returns user ID
         public int UpdateUser(User user)
         {
             if (GetUser(user.ID) != null)
@@ -73,6 +98,9 @@ namespace PriorityRoute.Data
             return user.ID;
         }
 
+        // deletes user from database
+        // requires user object
+        // returns user ID
         public int DeleteUser(User user)
         {
             return conn.Delete<User>(user.ID);

@@ -44,7 +44,7 @@ namespace PriorityRoute.Views
                     Convert.ToDouble(longitudeEntry.Text)
                 );
                 receptacleToAdd.Location = location;
-
+                receptacleToAdd.CompanyID = 1;
                 try
                 {
                     var returnvalue = receptacleOps.AddReceptacle(receptacleToAdd);

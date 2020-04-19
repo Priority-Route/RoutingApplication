@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:d="http://xamarin.com/schemas/2014/forms/design" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="PriorityRoute.Views.MainPage" BackgroundColor="Black">
-    <StackLayout Padding="40,0,40,0">
-        <Image Source="FullSizeRender" />
-
+    <StackLayout Padding="40,35,40,0">
+        <Image Source="FullSizeRender"
+               Margin="0,0,0,35"
+               />
         <Button Text="Find My Route"
                 Clicked="FindMyRouteClicked"
                 HorizontalOptions="CenterAndExpand"
@@ -12,9 +13,7 @@
                 BorderWidth="2"
                 BackgroundColor="#5299E7"
                 TextColor="Black"
-             
                 />
-
         <Button Text="Manage Drivers"
                 Clicked="ManageDriversClicked"
                 HorizontalOptions="CenterAndExpand"
@@ -24,9 +23,7 @@
                 BorderWidth="2"
                 BackgroundColor="#5299E7"
                 TextColor="Black"
-                
                 />
-
         <Button Text="Manage Receptacles"
                 Clicked="ManageReceptaclesClicked"
                 HorizontalOptions="CenterAndExpand"
@@ -35,12 +32,12 @@
                 CornerRadius="20"
                 BorderWidth="2"
                 BackgroundColor="#5299E7"
-                TextColor="Black" />
-
+                TextColor="Black"
+                />
         <Label Text="PriorityRoute®"
                HorizontalOptions="Center"
                VerticalOptions="EndAndExpand"
-               TextColor="AliceBlue"/>
-        
+               TextColor="AliceBlue"
+               />
     </StackLayout>
 </ContentPage>

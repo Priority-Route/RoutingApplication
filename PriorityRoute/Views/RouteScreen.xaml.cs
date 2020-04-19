@@ -14,14 +14,23 @@ namespace PriorityRoute.Views
     public partial class RouteScreen : ContentPage
     {
         User user;
+        Company comp;
         DBReceptacleOps recOps;
+        DBCompanyOps compOps;
+
+        List<Receptacle> network;
+        readonly List<Polyline> plottedRoutes = new List<Polyline>();
+        readonly Color[] color = { Color.Red, Color.Blue, Color.Green, Color.Yellow };
 
         public RouteScreen(User user)
         {
             InitializeComponent();
             FindMyLocation();
+            this.recOps = new DBReceptacleOps();
+            this.compOps = new DBCompanyOps();
             this.user = user;
-            recOps = new DBReceptacleOps();
+            this.comp = compOps.GetCompany(user.CompanyID);
+            this.network = this.comp.Network; 
         }
 
         private async void AddReceptaclesClicked(object sender, EventArgs e)
@@ -40,7 +49,7 @@ namespace PriorityRoute.Views
 
         private async void OnShowRoute(object sender, Xamarin.Forms.Maps.MapClickedEventArgs e)
         {
-
+            var result = await DirectionsApi.GetRoute()
         }
 
         private async void FindMyLocation()

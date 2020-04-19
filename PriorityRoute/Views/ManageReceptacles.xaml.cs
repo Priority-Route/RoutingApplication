@@ -41,7 +41,8 @@ namespace PriorityRoute.Views
 
                 Position location = new Position(
                     Convert.ToDouble(latitudeEntry.Text),
-                    Convert.ToDouble(longitudeEntry.Text));
+                    Convert.ToDouble(longitudeEntry.Text)
+                );
                 receptacleToAdd.Location = location;
 
                 try

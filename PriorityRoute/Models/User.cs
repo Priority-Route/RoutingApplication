@@ -6,6 +6,7 @@ namespace PriorityRoute.Models
     [Table("User")]
     public class User
     {
+        // setting database values (only int or String)
         [PrimaryKey, AutoIncrement]
         public int ID {get; set;}
         public int CompanyID {get; set;}

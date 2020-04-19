@@ -8,6 +8,7 @@ namespace PriorityRoute.Models
     [Table("Receptacle")]
     public class Receptacle
     {
+        // setting database values (only int or String)
         [PrimaryKey, AutoIncrement]
         public int ID {get; set;}
         public int CompanyID {get; set;}
@@ -22,8 +23,11 @@ namespace PriorityRoute.Models
 
         public Receptacle()
         {
+            // converting String values to doubles for Position object
             double lat = Convert.ToDouble(this.Latitude);
             double lon = Convert.ToDouble(this.Longitude);
+
+            // setting location object with values from database
             this.Location = new Position(lat, lon);
         }
     }

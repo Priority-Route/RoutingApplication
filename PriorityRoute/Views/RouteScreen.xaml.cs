@@ -26,6 +26,7 @@ namespace PriorityRoute.Views
         public RouteScreen(User user)
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, true);
             FindMyLocation();
             this.recOps = new DBReceptacleOps();
             this.compOps = new DBCompanyOps();

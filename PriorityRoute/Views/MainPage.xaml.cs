@@ -20,6 +20,7 @@ namespace PriorityRoute.Views
         public MainPage(User user)
         {
             InitializeComponent();
+            NavigationPage.SetHasBackButton(this, false);
             this.user = user;
         }
 

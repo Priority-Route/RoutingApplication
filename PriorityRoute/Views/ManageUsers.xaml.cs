@@ -19,6 +19,7 @@ namespace PriorityRoute.Views
         // logged in user information
         User user;
         User userToAdd = new User();
+        User userToRemove;
 
         // object to access User database
         DBUserOps userOps = new DBUserOps();
@@ -31,6 +32,44 @@ namespace PriorityRoute.Views
             userNameEntry.ReturnCommand = new Command(() => passwordEntry.Focus());
             this.user = user;
         }
+
+        private async void RemoveUserClicked(object sender, EventArgs e)
+        {
+            userToRemove.Username = userNameEntry.Text;
+            userToRemove.Password = passwordEntry.Text;
+
+            
+
+            try
+            {
+                // add user to database
+                var returnvalue = userOps.DeleteUser(userToRemove);
+
+                // if user is successfully added
+                if (returnvalue != null)
+                {
+                    // display success message
+                    await DisplayAlert("User Remove", "User Successfully Removed From Database", "OK");
+                    // go back to login page
+                    await Navigation.PushAsync(new LogInPage());
+                }
+                // if user is not successfully added
+                else
+                {
+                    // display error message
+                    await DisplayAlert("User Remove", "Please Try Again", "OK");
+
+                    // reset input fields
+                    userNameEntry.Text = string.Empty;
+                    passwordEntry.Text = string.Empty;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+        } 
 
         // adds user to database
         private async void AddUserClicked(object sender, EventArgs e)

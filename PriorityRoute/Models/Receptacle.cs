@@ -36,5 +36,10 @@ namespace PriorityRoute.Models
             // setting location object with values from database
             this.Location = new Position(lat, lon);
         }
+
+        public override string ToString()
+        {
+            return this.Name + "(" + this.Name + ")";
+        }
     }
 }

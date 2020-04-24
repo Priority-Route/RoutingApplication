@@ -51,6 +51,11 @@ namespace PriorityRoute.Views
             }
         }
 
+        private async void ViewReceptaclesClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ReceptacleView());
+        }
+
         // adds receptacle to the map view
         private async void AddReceptacleClicked(object sender, EventArgs e)
         {

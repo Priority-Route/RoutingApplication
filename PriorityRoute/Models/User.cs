@@ -18,5 +18,10 @@ namespace PriorityRoute.Models
         public int Administrator {get; set;}
         public String Username {get; set;}
         public String Password {get; set;}
+
+        public override string ToString()
+        {
+            return this.Username + "(" + this.Username + ")";
+        }
     }
 }

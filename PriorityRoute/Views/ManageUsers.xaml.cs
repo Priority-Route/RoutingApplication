@@ -131,6 +131,11 @@ namespace PriorityRoute.Views
 
         }
 
+        private async void ViewUsersClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UserView());
+        }
+
         // return to home screen
         private async void HomeButtonClicked(object sender, EventArgs e)
         {

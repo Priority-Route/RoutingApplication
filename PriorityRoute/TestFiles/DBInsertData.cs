@@ -54,20 +54,20 @@ namespace PriorityRoute.TestFiles
                 rec.Longitude = "0.0000";
             }
 
-            List<Receptacle> network = recOps.GetNetwork(compOps.GetCompany("testCompany2").ID);
+            network = recOps.GetNetwork(compOps.GetCompany("testCompany2").ID);
 
             foreach(Receptacle rec in network)
             {
-                rec.Latitude = "0.0000";
-                rec.Longitude = "0.0000";
+                rec.Latitude = "1.0000";
+                rec.Longitude = "1.0000";
             }
 
-            List<Receptacle> network = recOps.GetNetwork(compOps.GetCompany("testCompany3").ID);
+            network = recOps.GetNetwork(compOps.GetCompany("testCompany3").ID);
 
             foreach(Receptacle rec in network)
             {
-                rec.Latitude = "0.0000";
-                rec.Longitude = "0.0000";
+                rec.Latitude = "2.0000";
+                rec.Longitude = "2.0000";
             }
         }
     }

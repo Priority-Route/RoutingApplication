@@ -1,6 +1,7 @@
 ﻿using System;
 using PriorityRoute.Data;
 using PriorityRoute.Models;
+using PriorityRoute.TestFiles;
 using SQLite;
 using Xamarin.Forms;
 
@@ -15,6 +16,12 @@ namespace PriorityRoute.Views
             this.Title = "Users";
 
             SQLiteConnection conn = DependencyService.Get<ISQLite>().GetConnection();
+
+            DBInsertObjects dbio = new DBInsertObjects();
+            DBInsertData dbid = new DBInsertData();
+
+            dbio.RunTest();
+            dbid.RunTest();
 
             StackLayout stackLayout = new StackLayout();
 

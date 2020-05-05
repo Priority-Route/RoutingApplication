@@ -34,21 +34,29 @@ namespace PriorityRoute.TestFiles
             
             user1.Username = "testUser1";
             user1.Password = "testPass1";
+            user1.Administrator = 1;
             user2.Username = "testUser2";
             user2.Password = "testPass2";
+            user2.Administrator = 0;
             user3.Username = "testUser3";
             user3.Password = "testPass3";
+            user3.Administrator = 0;
             user4.Username = "testUser4";
             user4.Password = "testPass4";
+            user4.Administrator = 1;
             user5.Username = "testUser5";
             user5.Password = "testPass5";
+            user5.Administrator = 0;
             user6.Username = "testUser6";
             user6.Password = "testPass6";
+            user6.Administrator = 0;
             user7.Username = "testUser7";
             user7.Password = "testPass7";
+            user7.Administrator = 1;
             user8.Username = "testUser8";
             user8.Password = "testPass8";
-            
+            user8.Administrator = 0;
+
             ops.AddUser(user1);
             ops.AddUser(user2);
             ops.AddUser(user3);
